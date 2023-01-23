@@ -8,7 +8,7 @@ import { Component, OnInit } from '@angular/core';
 export class DashboardComponent implements OnInit {
   userName = 'Saleha';
   companyLogo = '';
-  selectedAction = '';
+  selectedAction = 'Actions';
   items = [
     { actionName: 'Manage Users' },
     { actionName: 'Roles' },
