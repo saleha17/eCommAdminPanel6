@@ -26,3 +26,441 @@
 @import '~@ionic/angular/css/text-alignment.css';
 @import '~@ionic/angular/css/text-transformation.css';
 @import '~@ionic/angular/css/flex-utils.css';
+$veryBigFont: 20px;
+$bigFont: 18px;
+$mediumFont: 16px;
+$smallFont: 14px;
+$verySmallFont: 12px;
+$veryVerySmallFont: 10px;
+
+:host ion-fab {
+  position: static;
+}
+.bigFont {
+  font-size: $bigFont;
+}
+.mediumFont {
+  font-size: $mediumFont;
+}
+.smallFont {
+  font-size: $smallFont;
+}
+.verySmallFont {
+  font-size: $verySmallFont;
+}
+.veryVerySmallFont {
+  font-size: $veryVerySmallFont;
+}
+.tal {
+  text-align: left !important;
+}
+.tar {
+  text-align: right !important;
+}
+.tac {
+  text-align: center !important;
+}
+.pr40 {
+  padding-right: 40px;
+}
+.pl10 {
+  padding-left: 10px !important;
+}
+.p30 {
+  padding: 30px;
+}
+.p10 {
+  padding: 10px;
+}
+.h20 {
+  padding: 20px;
+  height: 150px;
+}
+.top {
+  padding-top: 25%;
+}
+#deleteIcon {
+  width: 40px;
+  cursor: pointer;
+}
+.t0 {
+  top: 0;
+}
+.r0 {
+  right: 0;
+}
+.posAbs {
+  position: absolute;
+}
+.b0 {
+  bottom: 0;
+}
+.fr {
+  float: right;
+}
+.width100 {
+  width: 100%;
+}
+.p15p {
+  padding: 15px;
+}
+.hScroll {
+  height: 100%;
+}
+.height100 {
+  height: 100%;
+}
+.bw0 {
+  --border-width: 0 !important;
+}
+.maxWidth100 {
+  max-width: 100%;
+}
+.activeItem {
+  // background-color: rgb(103, 111, 165);
+  background-color: #ccc;
+}
+.asc {
+  align-self: center;
+}
+.col {
+  max-width: 400px;
+  margin: auto;
+}
+.width50 {
+  width: 50%;
+}
+.upperCase {
+  text-transform: uppercase;
+}
+.titleCase {
+  text-transform: capitalize;
+}
+.line-breaker {
+  white-space: pre-line;
+}
+ion-content {
+  // --background: url("assets/img/bg.jpg");
+}
+ion-input ion-button,
+ion-button {
+  // color: rgb(152, 19, 11);
+  vertical-align: middle;
+}
+ion-searchbar {
+  // color: white !important;
+  // --cancel-button-color: white !important;
+  // --icon-color: white !important;
+  padding: 0px !important;
+  // padding-bottom: 8px !important;
+  // padding-top: 8px !important;
+}
+ion-input,
+ion-textarea {
+  // color: white;
+  // --ion-background-color: rgb(103, 111, 165) !important;
+  // --background: rgb(103, 111, 165) !important;
+  // background-color: rgb(103, 111, 165) !important;
+}
+ion-select {
+  padding-left: 7px !important;
+}
+ion-item {
+  --highlight-color-focused: transparent;
+  color: #000;
+  font-size: $smallFont;
+}
+ion-label {
+  font-variant: small-caps;
+  text-align: right;
+  min-width: 150px;
+  margin-right: 10px !important;
+  font-weight: 700;
+}
+ion-title {
+  font-size: $veryBigFont;
+}
+ion-checkbox {
+  background-color: white;
+}
+ion-list {
+  --ion-background-color: transparent !important;
+  --background: transparent !important;
+}
+.darkRed {
+  color: #f5473e !important;
+}
+.boxShadowRemove {
+  --box-shadow: none !important;
+}
+.bgDarkBlue {
+  // --background: rgb(38, 49, 126);
+}
+.bgLightBlue {
+  // --ion-background-color: rgb(103, 111, 165) !important;
+  // --background: rgb(103, 111, 165) !important;
+}
+.bgTransparent {
+  --ion-background-color: transparent !important;
+  --background: transparent !important;
+}
+.fs14p {
+  font-size: 14px !important;
+}
+.width20 {
+  width: 20%;
+}
+.width60 {
+  width: 60%;
+}
+.bgRed {
+  background-color: red;
+}
+.mw100p {
+  max-width: 100px !important;
+}
+.fitContent {
+  max-width: fit-content;
+  position: relative;
+  display: inline-block;
+}
+.ionic-selectable {
+  max-width: 100% !important;
+  // color: white;
+  // --ion-background-color: rgb(103, 111, 165) !important;
+  // --background: rgb(103, 111, 165) !important;
+  // background-color: rgb(103, 111, 165) !important;
+}
+.p0 {
+  --padding-start: 0px !important;
+  --padding-end: 0px !important;
+  --padding-top: 0px !important;
+  --padding-bottom: 0px !important;
+}
+.h5 {
+  height: 4%;
+}
+.datatable-header {
+  // background: rgb(103, 111, 165) !important;
+  // padding: 1em 0 0 1em !important;
+  font-variant: small-caps;
+  font-weight: bolder;
+  margin-top: 0.5em;
+}
+.border {
+  border: 1px solid #0099c2 !important ;
+  border-radius: 5px !important;
+  width: 100%;
+}
+.datatable-header-cell {
+  font-size: $mediumFont !important;
+  font-weight: bold !important;
+  text-align: left;
+  padding-left: 10px;
+}
+
+.datatable-body-row {
+  padding: 0 !important;
+  border-bottom: dashed;
+  border-bottom-width: 0.5px;
+}
+
+.datatable-row-even {
+  background: transparent !important;
+}
+
+.datatable-row-odd {
+  background: #ccc !important;
+}
+
+.datatable-body-cell {
+  font-size: $smallFont !important;
+  // padding: 0.5em !important;
+  padding-left: 10px;
+  text-align: left;
+  line-height: 35px !important;
+  vertical-align: middle;
+}
+
+.ngx-datatable .datatable-footer .datatable-pager ul li:not(.disabled).active a,
+.ngx-datatable .datatable-footer .datatable-pager ul li:not(.disabled):hover a {
+  text-align: center;
+  width: 20px;
+  background-color: #ccc !important;
+  font-weight: bold !important;
+}
+
+// Style footer appearance
+.datatable-footer {
+  // background: rgb(103, 111, 165) !important;
+  font-weight: bolder;
+  padding: 0 0.3em 0 0.3em !important;
+
+  .pager {
+    li {
+      padding: 0 0.3em !important;
+
+      a {
+        text-align: center;
+        width: 20px;
+        color: rgba(68, 68, 68, 1) !important;
+        text-decoration: none !important;
+      }
+    }
+  }
+}
+
+// Style rules for the footer pagination elements
+.datatable-icon-done-all:before {
+  content: '>>' !important;
+}
+
+.datatable-icon-left:before {
+  content: '<' !important;
+}
+
+.datatable-icon-right:before {
+  content: '>' !important;
+}
+
+.datatable-icon-skip:before {
+  content: '>>' !important;
+}
+
+.datatable-icon-prev:before {
+  content: '<<' !important;
+}
+.ngx-datatable.scroll-vertical {
+  height: 50vh;
+}
+$userBackgroundColor: #387ef5;
+$toUserBackgroundColor: #fff;
+.message-wrap {
+  padding: 0 10px;
+  .message {
+    position: relative;
+    padding: 7px 0;
+    .user-img {
+      position: absolute;
+      border-radius: 45px;
+      width: 45px;
+      height: 45px;
+      box-shadow: 0 0 2px rgba(0, 0, 0, 0.36);
+    }
+
+    .msg-detail {
+      width: 100%;
+      display: inline-block;
+      p {
+        margin: 0;
+      }
+      .msg-info {
+        p {
+          font-size: 0.8em;
+          color: #aaa;
+        }
+      }
+
+      .msg-content {
+        position: relative;
+        margin-top: 5px;
+        border-radius: 5px;
+        padding: 8px;
+        border: 1px solid #ddd;
+        color: #fff;
+        width: auto;
+        max-width: 80%;
+        span.triangle {
+          background-color: #fff;
+          border-radius: 2px;
+          height: 8px;
+          width: 8px;
+          top: 12px;
+          display: block;
+          border-style: solid;
+          border-color: #ddd;
+          border-width: 1px;
+          -webkit-transform: rotate(45deg);
+          transform: rotate(45deg);
+          position: absolute;
+        }
+      }
+    }
+  }
+
+  .message.left {
+    .msg-content {
+      background-color: $toUserBackgroundColor;
+      float: left;
+    }
+    .msg-detail {
+      padding-left: 60px;
+    }
+    .user-img {
+      left: 0;
+    }
+    .msg-content {
+      color: #343434;
+      span.triangle {
+        border-top-width: 0;
+        border-right-width: 0;
+        left: -5px;
+      }
+    }
+  }
+
+  .message.right {
+    .msg-detail {
+      padding-right: 60px;
+      .msg-info {
+        text-align: right;
+      }
+    }
+    .user-img {
+      right: 0;
+    }
+    ion-spinner {
+      position: absolute;
+      right: 10px;
+      top: 50px;
+    }
+    .msg-content {
+      background-color: $userBackgroundColor;
+      float: right;
+      span.triangle {
+        background-color: $userBackgroundColor;
+        border-bottom-width: 0;
+        border-left-width: 0;
+        right: -5px;
+      }
+    }
+  }
+
+  @media print {
+    app-root > * {
+      display: none;
+    }
+    app-root app-print-layout {
+      display: block;
+    }
+  }
+}
+a {
+  cursor: pointer;
+  border-bottom: 1px solid;
+}
+.profileImage {
+  width: 200px;
+}
+.smallCaps {
+  font-variant: small-caps;
+  color: black;
+  // font-size: 20px;
+}
+.fixDiv {
+  max-height: 35vh;
+  overflow-y: scroll;
+}
+.bottomBorder {
+  border-bottom: 1px solid #ccc;
+}

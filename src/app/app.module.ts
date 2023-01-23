@@ -11,6 +11,8 @@ import { IonicModule, IonicRouteStrategy } from '@ionic/angular';
 
 import { AppComponent } from './app.component';
 import { HelloComponent } from './hello.component';
+import { AppRoutingModule } from './app-routing.module';
+import { LoginComponent } from './public/login/login.component';
 
 const routes: Routes = [];
 
@@ -20,8 +22,9 @@ const routes: Routes = [];
     FormsModule,
     IonicModule.forRoot(),
     RouterModule.forRoot(routes, { preloadingStrategy: PreloadAllModules }),
+    AppRoutingModule,
   ],
-  declarations: [AppComponent, HelloComponent],
+  declarations: [AppComponent, HelloComponent, LoginComponent],
   bootstrap: [AppComponent],
   providers: [{ provide: RouteReuseStrategy, useClass: IonicRouteStrategy }],
 })

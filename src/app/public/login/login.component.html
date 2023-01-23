@@ -1,0 +1,53 @@
+<ion-content padding>
+  <div padding>
+    <ion-row>
+      <ion-col>
+        <img
+          *ngIf="!this.companyLogo"
+          class="logo"
+          src="assets/defaultLogo.jpeg"
+        />
+        <img
+          *ngIf="this.companyLogo"
+          class="logo"
+          src="{{ this.companyLogo }}"
+        />
+      </ion-col>
+    </ion-row>
+    <ion-row class="login">
+      <ion-col>
+        <ion-list inset class="no-border bgTransparent">
+          <ion-item>
+            <ion-label>Login ID</ion-label>
+            <ion-input
+              type="text"
+              name="username"
+              [(ngModel)]="username"
+              class="bgLightBlue border"
+            ></ion-input>
+          </ion-item>
+          <ion-item>
+            <ion-label>Password</ion-label>
+            <ion-input
+              type="password"
+              name="password"
+              [(ngModel)]="password"
+              class="bgLightBlue border"
+            ></ion-input>
+          </ion-item>
+        </ion-list>
+      </ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col>
+        <ion-button class="login-button" (click)="login()">Submit</ion-button>
+      </ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col> <a (click)="forgotPassword()"> Forgot Password? </a> </ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col> <a (click)="signUp()"> Sign Up </a> </ion-col>
+    </ion-row>
+  </div>
+</ion-content>
