@@ -7,11 +7,7 @@
           class="logo"
           src="../assets/localhost.png"
         />
-        <img
-          *ngIf="this.companyLogo"
-          class="logo"
-          src="{{ this.companyLogo }}"
-        />
+        <img *ngIf="this.companyLogo" class="logo" [src]="this.companyLogo" />
       </ion-col>
     </ion-row>
     <ion-row class="login">
