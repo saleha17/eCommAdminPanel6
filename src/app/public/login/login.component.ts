@@ -7,11 +7,13 @@ import { NavController } from '@ionic/angular';
   styleUrls: ['./login.component.scss'],
 })
 export class LoginComponent implements OnInit {
-  companyLogo = 'assets/localhost.png';
+  companyLogo = '';
   username = '';
   password = '';
 
-  constructor(public navCtrl: NavController) {}
+  constructor(public navCtrl: NavController) {
+    console.log(this.companyLogo);
+  }
 
   ngOnInit() {}
   login() {}
