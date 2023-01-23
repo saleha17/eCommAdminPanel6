@@ -11,8 +11,8 @@ export class RolesComponent implements OnInit {
 
   public listOfRoles: any;
   public selectedRole = '';
-  public items: any;
-  public itemsActions: any;
+  public items = [{ roleName: 'Admin' }];
+  public itemsActions = [{ actionName: 'Orders', permissionName: 'read' }];
   public arrowKeyLocation = -1;
   public arrowKeyLocationAction = -1;
   public manageSelectedRole = '';
@@ -29,7 +29,11 @@ export class RolesComponent implements OnInit {
   async getAllRoles() {}
   setItems() {}
   async setActions() {}
-  selectRole(item: any) {}
+  selectRole(item: any) {
+    this.selectedRole = item.roleName;
+    console.log('this.selectedRole', this.selectedRole);
+    this.searchRole(item.roleName);
+  }
   async filterActions(ev: any) {}
   keyDownActions(event: KeyboardEvent) {}
   async deleteRolePermission(rolePermission) {}
