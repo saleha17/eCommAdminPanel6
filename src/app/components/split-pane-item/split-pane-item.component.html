@@ -1,0 +1,21 @@
+<ion-searchbar
+  [(ngModel)]="dyClass"
+  placeholder="Search"
+  showCancelButton
+  (ionChange)="inputCall($event)"
+  (keydown)="keyDownCall($event)"
+  (keyup.enter)="KeyUpEnter()"
+></ion-searchbar>
+<ion-list lines="none">
+  <ion-row
+    *ngFor="let process of ArrayValue; let i = index"
+    (click)="call(process, i)"
+    ngClass=" {{
+      i == arrowKeyLocation ? 'activeItem bottomBorder' : 'bottomBorder'
+    }} "
+  >
+    <ion-col>
+      <ion-item class="mediumFont"> {{ process[StingName] }} </ion-item>
+    </ion-col>
+  </ion-row>
+</ion-list>
