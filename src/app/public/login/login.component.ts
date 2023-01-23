@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { NavController } from '@ionic/angular';
 
 @Component({
   selector: 'app-login',
@@ -10,10 +11,12 @@ export class LoginComponent implements OnInit {
   username = '';
   password = '';
 
-  constructor() {}
+  constructor(public navCtrl: NavController) {}
 
   ngOnInit() {}
   login() {}
   forgotPassword() {}
-  signUp() {}
+  signUp() {
+    this.navCtrl.navigateForward('signUp');
+  }
 }
