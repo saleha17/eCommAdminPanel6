@@ -15,6 +15,7 @@ import { AppRoutingModule } from './app-routing.module';
 import { LoginComponent } from './public/login/login.component';
 import { SignUpComponent } from './public/sign-up/sign-up.component';
 import { DashboardComponent } from './app/dashboard/dashboard.component';
+import { ProcessService } from './services/process.service';
 
 const routes: Routes = [];
 
@@ -34,6 +35,9 @@ const routes: Routes = [];
     DashboardComponent,
   ],
   bootstrap: [AppComponent],
-  providers: [{ provide: RouteReuseStrategy, useClass: IonicRouteStrategy }],
+  providers: [
+    { provide: RouteReuseStrategy, useClass: IonicRouteStrategy },
+    ProcessService,
+  ],
 })
 export class AppModule {}
