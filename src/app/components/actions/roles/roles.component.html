@@ -1,3 +1,185 @@
-<p>
-roles works!
-</p>
+<ion-split-pane [when]="true">
+  <ion-menu>
+    <!-- <ion-searchbar [(ngModel)]="manageSelectedRole" placeholder="Search" showCancelButton (ionInput)="filterItems($event)" (keyup.enter)="searchRole()" (keydown)="keyDown($event)"></ion-searchbar> -->
+    <ion-content class="hScroll bgDarkBlue">
+      <!-- <ion-list class="bgTransparent">
+      <ion-item *ngFor="let item of items" [ngClass]="item.roleName == manageSelectedRole ? 'activeItem' : ''" (click)="selectRole($event, item)"> {{ item.roleName }} </ion-item>
+    </ion-list> -->
+      <app-split-pane-item
+        [val]="items"
+        StingName="roleName"
+        (callFunction)="selectRole($event)"
+      ></app-split-pane-item>
+    </ion-content>
+  </ion-menu>
+  <!-- <div class='ion-page' main> -->
+  <!--
+  <ion-header>
+    <ion-toolbar>
+
+      <ion-buttons slot="start">
+        <ion-menu-button></ion-menu-button>
+      </ion-buttons>
+
+      <ion-title *ngIf="selectedRole != ''">{{selectedRole}}</ion-title>
+    </ion-toolbar>
+  </ion-header>
+-->
+  <ion-content main>
+    <h4 *ngIf="manageSelectedRole == ''" class="tac top smallCase smallCaps">
+      Please select Role from left menu to view Role and its Action Permissions
+    </h4>
+    <div>
+      <ion-row *ngIf="manageSelectedRole != ''">
+        <ion-col class="p15p upperCase mediumFont">{{
+          manageSelectedRole
+        }}</ion-col>
+      </ion-row>
+      <ion-row *ngIf="manageSelectedRole != ''">
+        <ion-col col-8>
+          <ion-item>
+            <ion-label>Role Name </ion-label>
+            <ion-input
+              (ionInput)="showButton('roleName')"
+              type="text"
+              name="roleName"
+              [(ngModel)]="roleName"
+            ></ion-input>
+          </ion-item>
+        </ion-col>
+        <ion-col col-4>
+          <ion-button *ngIf="flagButton == 'roleName'" (click)="updateRole()"
+            ><ion-icon name="checkmark"></ion-icon
+          ></ion-button>
+        </ion-col>
+      </ion-row>
+      <ion-row *ngIf="manageSelectedRole != ''">
+        <ion-col col-8>
+          <ion-item>
+            <ion-label>Description </ion-label>
+            <ion-input
+              (ionInput)="showButton('description')"
+              type="text"
+              name="description"
+              [(ngModel)]="description"
+            ></ion-input>
+          </ion-item>
+        </ion-col>
+        <ion-col col-4>
+          <ion-button *ngIf="flagButton == 'description'" (click)="updateRole()"
+            ><ion-icon name="checkmark"></ion-icon
+          ></ion-button>
+        </ion-col>
+      </ion-row>
+      <br />
+      <br />
+      <hr *ngIf="manageSelectedRole != ''" color="#ccc" />
+      <br />
+      <ion-row class="tal" *ngIf="manageSelectedRole != ''">
+        <ion-col class="tal mediumFont smallCaps"
+          ><b> Role Permission </b></ion-col
+        >
+        <ion-col class="tar">
+          <ion-button
+            *ngIf="manageSelectedRole != ''"
+            (click)="addRoleActionPermission(selectedRole)"
+            ><ion-icon name="add"></ion-icon
+          ></ion-button>
+        </ion-col>
+      </ion-row>
+      <ion-row *ngIf="manageSelectedRole != ''">
+        <ion-searchbar
+          placeholder="Search"
+          showCancelButton
+          (ionInput)="filterActions($event)"
+          (keydown)="keyDownActions($event)"
+        ></ion-searchbar>
+      </ion-row>
+    </div>
+    <!-- <ion-row *ngIf="selectedRole != ''">
+    <ion-list class="width100">
+      <ion-item>
+        <ion-row class="width100">
+          <ion-col>Action Name</ion-col>
+          <ion-col class="tac">Permissions</ion-col>
+          <ion-col class="tar">Delete</ion-col>
+        </ion-row>
+      </ion-item>
+    </ion-list>
+  </ion-row>
+  <ion-row *ngIf="selectedRole != ''">
+    <div scrollY="true" class="width100" id="myFixZone">
+      <ion-list>
+        <ion-item *ngFor="let rolePermission of itemsActions">
+          <ion-row class="width100">
+            <ion-col>{{ rolePermission.actionName }}</ion-col>
+            <ion-col class="tac">{{ rolePermission.permissionName }}</ion-col>
+            <ion-col class="tar">
+              <ion-button color="danger" class="b0 r0" (click)="deleteRolePermission(rolePermission)"><ion-icon name="close"></ion-icon></ion-button>
+            </ion-col>
+          </ion-row>
+        </ion-item>
+      </ion-list>
+    </div>
+  </ion-row> -->
+    <div *ngIf="manageSelectedRole != ''" ion-fixed>
+      <ngx-datatable
+        [headerHeight]="50"
+        [footerHeight]="50"
+        [rowHeight]="35"
+        [rows]="itemsActions"
+        columnMode="force"
+        [scrollbarV]="true"
+        [scrollbarH]="true"
+        class="ngx-datatable.scroll-vertical"
+      >
+        <ngx-datatable-column
+          prop="actionName"
+          name="Action Name"
+          [flexGrow]="3"
+        >
+          <ng-template
+            let-row="row"
+            let-value="value"
+            ngx-datatable-cell-template
+          >
+            {{ value }}
+          </ng-template>
+        </ngx-datatable-column>
+        <ngx-datatable-column
+          prop="permissionName"
+          name="Permissions"
+          [flexGrow]="1"
+        >
+          <ng-template
+            let-row="row"
+            let-value="value"
+            ngx-datatable-cell-template
+          >
+            {{ value }}
+          </ng-template>
+        </ngx-datatable-column>
+        <ngx-datatable-column name="Delete" [flexGrow]="1">
+          <ng-template
+            let-row="row"
+            let-value="value"
+            ngx-datatable-cell-template
+          >
+            <ion-button
+              size="small"
+              class="bgTransparent boxShadowRemove darkRed"
+              (click)="deleteRolePermission(row)"
+              ><ion-icon name="close"></ion-icon
+            ></ion-button>
+          </ng-template>
+        </ngx-datatable-column>
+      </ngx-datatable>
+    </div>
+    <div ion-fixed>
+      <ion-fab bottom right class="t0 r0 p15p"
+        ><ion-button (click)="addRole()">Add</ion-button></ion-fab
+      >
+    </div>
+  </ion-content>
+  <!-- </div> -->
+</ion-split-pane>
