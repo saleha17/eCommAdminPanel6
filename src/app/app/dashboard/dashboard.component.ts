@@ -21,4 +21,5 @@ export class DashboardComponent implements OnInit {
   filterItems(arg: any) {}
   searchAction() {}
   keyDown(event: any) {}
+  selectAction(arg1: any, arg2: any) {}
 }

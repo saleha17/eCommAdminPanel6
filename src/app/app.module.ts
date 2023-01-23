@@ -14,6 +14,7 @@ import { HelloComponent } from './hello.component';
 import { AppRoutingModule } from './app-routing.module';
 import { LoginComponent } from './public/login/login.component';
 import { SignUpComponent } from './public/sign-up/sign-up.component';
+import { DashboardComponent } from './app/dashboard/dashboard.component';
 
 const routes: Routes = [];
 
@@ -25,7 +26,13 @@ const routes: Routes = [];
     RouterModule.forRoot(routes, { preloadingStrategy: PreloadAllModules }),
     AppRoutingModule,
   ],
-  declarations: [AppComponent, HelloComponent, LoginComponent, SignUpComponent],
+  declarations: [
+    AppComponent,
+    HelloComponent,
+    LoginComponent,
+    SignUpComponent,
+    DashboardComponent,
+  ],
   bootstrap: [AppComponent],
   providers: [{ provide: RouteReuseStrategy, useClass: IonicRouteStrategy }],
 })
