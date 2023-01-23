@@ -1,4 +1,5 @@
 import { Injectable } from '@angular/core';
+import { RolesComponent } from '../components/actions/roles/roles.component';
 import { ProcessActionItem } from '../components/processActionItem';
 
 @Injectable({
@@ -22,8 +23,12 @@ export class ProcessService {
     let comp: any = this.resolveComponentsName(this.actionName);
     let newItem = new ProcessActionItem(comp, this.actionName, this.companyId);
     result.push(newItem);
-
+    console.log('**', result);
     return result;
   }
-  private resolveComponentsName(actionName) {}
+  private resolveComponentsName(actionName) {
+    if (actionName == 'Roles') {
+      return RolesComponent;
+    }
+  }
 }

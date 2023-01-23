@@ -17,6 +17,7 @@ import { SignUpComponent } from './public/sign-up/sign-up.component';
 import { DashboardComponent } from './app/dashboard/dashboard.component';
 import { ProcessService } from './services/process.service';
 import { ActionWindowComponent } from './app/action-window/action-window.component';
+import { ComponentsModule } from './components/components.module';
 
 const routes: Routes = [];
 
@@ -27,6 +28,7 @@ const routes: Routes = [];
     IonicModule.forRoot(),
     RouterModule.forRoot(routes, { preloadingStrategy: PreloadAllModules }),
     AppRoutingModule,
+    ComponentsModule,
   ],
   declarations: [
     AppComponent,
