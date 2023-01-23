@@ -1,0 +1,66 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="end">
+      <ion-button (click)="logout()">
+        <ion-icon slot="icon-only" name="log-out"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+    <ion-row>
+      <ion-col class="tal smallCaps">
+        <ion-title> Talkbrite </ion-title>
+      </ion-col>
+      <ion-col>
+        <ion-title class="smallCaps">Search for actions</ion-title></ion-col
+      >
+      <ion-col class="tar pr40 titleCase smallCaps"
+        ><ion-title>{{ userName }}</ion-title></ion-col
+      >
+    </ion-row>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content padding>
+  <ion-row>
+    <ion-col>
+      <div>
+        <img
+          *ngIf="!this.companyLogo"
+          class="logo"
+          src="assets/logo/atisaheLogo.png"
+        />
+        <img
+          *ngIf="this.companyLogo"
+          class="logo"
+          src="{{ this.companyLogo }}"
+        />
+      </div>
+    </ion-col>
+  </ion-row>
+  <ion-searchbar
+    [(ngModel)]="selectedAction"
+    class="searchBar"
+    placeholder="Search for Actions"
+    showCancelButton
+    (ionInput)="filterItems($event)"
+    (keyup.enter)="searchAction()"
+    (keydown)="keyDown($event)"
+  ></ion-searchbar>
+  <ion-list
+    *ngIf="this.items != null && this.items != []"
+    [ngClass]="items.length == 0 ? 'searchBar' : 'searchBar fixDiv'"
+  >
+    <ion-item
+      class="searchBar"
+      *ngFor="let item of items"
+      [ngClass]="item.actionName == selectedAction ? 'activeItem' : ''"
+      (click)="selectAction($event, item)"
+    >
+      {{ item.actionName }}
+    </ion-item>
+  </ion-list>
+  <ion-row>
+    <ion-col>
+      <ion-button class="click-button" (click)="searchAction()">Go</ion-button>
+    </ion-col>
+  </ion-row>
+</ion-content>
