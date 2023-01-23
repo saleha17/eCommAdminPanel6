@@ -18,14 +18,15 @@ export class ActionWindowComponent implements OnInit {
   public actionName: any;
   public userData: any;
   public userName: any;
-  @ViewChild('processContainer', { static: true }) container;
+  @ViewChild('processContainer', { read: ViewContainerRef }) container;
 
   constructor(
     private processService: ProcessService,
     private resolver: ComponentFactoryResolver
   ) {}
 
-  ngOnInit() {
+  ngOnInit() {}
+  ngAfterViewInit() {
     console.log('container', this.container);
     let actions = this.processService.getProcessName();
     for (let action of actions) {
