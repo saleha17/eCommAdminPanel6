@@ -11,11 +11,33 @@ export class DashboardComponent implements OnInit {
   companyLogo = 'assets/logo/atisaheLogo.png';
   selectedAction = 'Actions';
   items = [
-    { actionName: 'Manage Users' },
     { actionName: 'Roles' },
-    { actionName: 'Actions' },
+    { actionName: 'Manage Actions' },
+    { actionName: 'Users' },
+    { actionName: 'Company' },
+    { actionName: 'Designation' },
+    { actionName: 'Product Parameter Master' },
+    { actionName: 'Products' },
+    { actionName: 'Tags' },
+    { actionName: 'Product Collections' },
+    { actionName: 'Cart' },
+    { actionName: 'Customer' },
+    { actionName: 'Orders' },
+    { actionName: 'Pending Orders' },
+    { actionName: 'Order Dispatch' },
+    { actionName: 'Delete Users' },
+    { actionName: 'Pricing' },
+    { actionName: 'Department' },
   ];
-  public listOfActions: any;
+  public listOfActions = [
+    { actionName: 'Roles' },
+    { actionName: 'Manage Actions' },
+    { actionName: 'Users' },
+    { actionName: 'Company' },
+    { actionName: 'Designation' },
+    { actionName: 'Product Parameter Master' },
+    { actionName: 'Products' },
+  ];
   public arrowKeyLocation = -1;
 
   constructor(

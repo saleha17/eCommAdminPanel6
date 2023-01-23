@@ -1,0 +1,31 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="app/dashboard"></ion-back-button>
+    </ion-buttons>
+    <ion-buttons slot="end">
+      <ion-button (click)="logout()">
+        <ion-icon slot="icon-only" name="log-out"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+    <ion-row>
+      <ion-col class="tal smallCaps">
+        <ion-title> Talkbrite </ion-title></ion-col
+      >
+      <ion-col class="tac smallCaps"
+        ><ion-title> {{ actionName }} </ion-title></ion-col
+      >
+      <ion-col class="tar pr40 titleCase smallCaps"
+        ><ion-title> {{ userName }} </ion-title></ion-col
+      >
+    </ion-row>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content padding>
+  <div #processContainer></div>
+  <!--
+    <div #manageProcessContainer>
+    </div>
+  -->
+</ion-content>

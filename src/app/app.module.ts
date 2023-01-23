@@ -16,6 +16,7 @@ import { LoginComponent } from './public/login/login.component';
 import { SignUpComponent } from './public/sign-up/sign-up.component';
 import { DashboardComponent } from './app/dashboard/dashboard.component';
 import { ProcessService } from './services/process.service';
+import { ActionWindowComponent } from './app/action-window/action-window.component';
 
 const routes: Routes = [];
 
@@ -33,6 +34,7 @@ const routes: Routes = [];
     LoginComponent,
     SignUpComponent,
     DashboardComponent,
+    ActionWindowComponent,
   ],
   bootstrap: [AppComponent],
   providers: [
