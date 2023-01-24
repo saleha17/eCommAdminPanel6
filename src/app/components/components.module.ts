@@ -25,6 +25,10 @@ import { IonicSelectSearchableComponent } from './ionic-select-searchable/ionic-
   entryComponents: [
     RolesComponent,
     SplitPaneItemComponent,
+    ManageRolesComponent,
+    ManageActionsComponent,
+    UserComponent,
+    ManageUserComponent,
     IonicSelectSearchableComponent,
   ],
 })

@@ -128,16 +128,24 @@
     <ion-col>
       <ion-item>
         <ion-label>Work Area</ion-label>
-        <!-- <ion-select multiple [(ngModel)]="areaIdsList" class="tac width100 maxWidth100" >
-                <ion-select-option *ngFor="let area of getAllWorkArea" [value]="area.id">{{area.name}}</ion-select-option>
-            </ion-select> -->
-        <app-ionic-select-searchable
+        <ion-select
+          multiple
+          [(ngModel)]="areaIdsList"
+          class="tac width100 maxWidth100"
+        >
+          <ion-select-option
+            *ngFor="let area of getAllWorkArea"
+            [value]="area.id"
+            >{{ area.name }}</ion-select-option
+          >
+        </ion-select>
+        <!-- <app-ionic-select-searchable
           class="width100"
           [list]="getAllWorkArea"
           [selectedValue]="areaIdsList"
           [valueField]="id"
           [textField]="name"
-        ></app-ionic-select-searchable>
+        ></app-ionic-select-searchable> -->
       </ion-item>
     </ion-col>
   </ion-row>
@@ -165,16 +173,24 @@
     <ion-col>
       <ion-item>
         <ion-label>Work Area</ion-label>
-        <!-- <ion-select multiple [(ngModel)]="areaIdsList" class="tac width100 maxWidth100">
-          <ion-select-option *ngFor="let area of getAllWorkArea" [value]="area.id">{{ area.name }}</ion-select-option>
-        </ion-select> -->
-        <app-ionic-select-searchable
+        <ion-select
+          multiple
+          [(ngModel)]="areaIdsList"
+          class="tac width100 maxWidth100"
+        >
+          <ion-select-option
+            *ngFor="let area of getAllWorkArea"
+            [value]="area.id"
+            >{{ area.name }}</ion-select-option
+          >
+        </ion-select>
+        <!-- <app-ionic-select-searchable
           class="width100"
           [list]="getAllWorkArea"
           [selectedValue]="areaIdsList"
           [valueField]="id"
           [textField]="name"
-        ></app-ionic-select-searchable>
+        ></app-ionic-select-searchable> -->
       </ion-item>
     </ion-col>
   </ion-row>
