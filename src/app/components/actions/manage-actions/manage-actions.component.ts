@@ -9,7 +9,7 @@ export class ManageActionsComponent implements OnInit {
   @Input() data: any;
   @Input() cid: any;
 
-  public items: any;
+  public items = [{ actionName: 'Manage Users' }];
   public userData: any;
   public manageSelectedAction: '';
   public arrowKeyLocation = -1;
