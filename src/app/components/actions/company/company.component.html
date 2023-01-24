@@ -1,0 +1,391 @@
+<ion-split-pane [when]="true">
+  <ion-menu>
+    <ion-nav swipeBackEnabled="false" main>
+      <!-- <ion-searchbar [(ngModel)]="manageSelectedCompany" placeholder="Search Company" showCancelButton (ionInput)="filterItems($event)" (keyup.enter)="getCompanyDetail()" (keydown)="keyDown($event)"></ion-searchbar> -->
+      <ion-content class="hScroll bgDarkBlue">
+        <app-split-pane-item
+          [val]="items"
+          StingName="name"
+          (callFunction)="getCompanyDetail($event)"
+          (callKeyupEnter)="getCompanyDetail('')"
+        ></app-split-pane-item>
+        <!-- <ion-list class="bgTransparent">
+        <ion-item *ngFor="let item of items" [ngClass]="item.name == manageSelectedCompany ? 'activeItem' : ''" (click)="getCompanyDetail(item.name)"> {{ item.name }} </ion-item>
+      </ion-list> -->
+      </ion-content>
+    </ion-nav>
+  </ion-menu>
+  <ion-content main>
+    <h4 *ngIf="manageSelectedCompany == ''" class="tac top smallCaps">
+      Please select Company from left menu to view Company's data
+    </h4>
+    <ion-list>
+      <ion-row>
+        <ion-col
+          *ngIf="manageSelectedCompany != ''"
+          class="tal p15p upperCase mediumFont"
+        >
+          {{ manageSelectedCompany }}
+        </ion-col>
+      </ion-row>
+    </ion-list>
+    <ion-row *ngIf="manageSelectedCompany != ''">
+      <ion-col>
+        <ion-item>
+          <ion-label>Company Name </ion-label>
+          <ion-input
+            (ionInput)="showButton('name')"
+            type="text"
+            name="name"
+            [(ngModel)]="name"
+          ></ion-input>
+        </ion-item>
+      </ion-col>
+      <ion-col>
+        <ion-button *ngIf="flgBtn == 'name'" (click)="updateCompany()">
+          <ion-icon name="checkmark"></ion-icon>
+        </ion-button>
+      </ion-col>
+    </ion-row>
+    <ion-row *ngIf="manageSelectedCompany != ''">
+      <ion-col col-8>
+        <ion-item>
+          <ion-label>Contact Name </ion-label>
+          <ion-input
+            (ionInput)="showButton('contactName')"
+            type="text"
+            name="contactName"
+            [(ngModel)]="contactName"
+          ></ion-input>
+        </ion-item>
+      </ion-col>
+      <ion-col col-4>
+        <ion-button *ngIf="flgBtn == 'contactName'" (click)="updateCompany()">
+          <ion-icon name="checkmark"></ion-icon>
+        </ion-button>
+      </ion-col>
+    </ion-row>
+    <ion-row *ngIf="manageSelectedCompany != ''">
+      <ion-col col-8>
+        <ion-item>
+          <ion-label>Contact No </ion-label>
+          <ion-input
+            (ionInput)="showButton('contactNumber')"
+            type="text"
+            name="contactNumber"
+            [(ngModel)]="contactNumber"
+          ></ion-input>
+        </ion-item>
+      </ion-col>
+      <ion-col col-4>
+        <ion-button *ngIf="flgBtn == 'contactNumber'" (click)="updateCompany()">
+          <ion-icon name="checkmark"></ion-icon>
+        </ion-button>
+      </ion-col>
+    </ion-row>
+    <ion-row *ngIf="manageSelectedCompany != ''">
+      <ion-col col-8>
+        <ion-item>
+          <ion-label>Attendance Server</ion-label>
+          <ion-input
+            (ionInput)="showButton('handleCompanyWebHook')"
+            type="text"
+            name="handleCompanyWebHook"
+            [(ngModel)]="handleCompanyWebHook"
+          ></ion-input>
+        </ion-item>
+      </ion-col>
+      <ion-col col-4>
+        <ion-button
+          *ngIf="flgBtn == 'handleCompanyWebHook'"
+          (click)="updateCompany()"
+        >
+          <ion-icon name="checkmark"></ion-icon>
+        </ion-button>
+      </ion-col>
+    </ion-row>
+    <ion-row *ngIf="manageSelectedCompany != ''">
+      <ion-col col-8>
+        <ion-item>
+          <ion-label>HR-LoginLogOut</ion-label>
+          <ion-input
+            (ionInput)="showButton('webHookInOutUrl')"
+            type="text"
+            name="webHookInOutUrl"
+            [(ngModel)]="webHookInOutUrl"
+          ></ion-input>
+        </ion-item>
+      </ion-col>
+      <ion-col col-4>
+        <ion-button
+          *ngIf="flgBtn == 'webHookInOutUrl'"
+          (click)="updateCompany()"
+        >
+          <ion-icon name="checkmark"></ion-icon>
+        </ion-button>
+      </ion-col>
+    </ion-row>
+    <ion-row *ngIf="manageSelectedCompany != ''">
+      <ion-col col-8>
+        <ion-item>
+          <ion-label>Subdomain</ion-label>
+          <ion-input
+            (ionInput)="showButton('subdomain')"
+            type="text"
+            name="subdomain"
+            [(ngModel)]="subdomain"
+          ></ion-input>
+        </ion-item>
+      </ion-col>
+      <ion-col col-4>
+        <ion-button *ngIf="flgBtn == 'subdomain'" (click)="updateCompany()">
+          <ion-icon name="checkmark"></ion-icon>
+        </ion-button>
+      </ion-col>
+    </ion-row>
+    <ion-row *ngIf="manageSelectedCompany != ''">
+      <ion-col col-8>
+        <ion-item>
+          <ion-label>Product Type</ion-label>
+          <ion-input
+            (ionInput)="showButton('productType')"
+            type="text"
+            name="productType"
+            [(ngModel)]="productType"
+          ></ion-input>
+        </ion-item>
+      </ion-col>
+      <ion-col col-4>
+        <ion-button *ngIf="flgBtn == 'productType'" (click)="updateCompany()">
+          <ion-icon name="checkmark"></ion-icon>
+        </ion-button>
+      </ion-col>
+    </ion-row>
+    <ion-row *ngIf="manageSelectedCompany != ''">
+      <ion-col col-8>
+        <ion-item>
+          <ion-label>Company Logo</ion-label>
+          <ion-input
+            (ionInput)="showButton('companyLogo')"
+            type="text"
+            name="companyLogo"
+            [(ngModel)]="companyLogo"
+          ></ion-input>
+        </ion-item>
+      </ion-col>
+      <ion-col col-4>
+        <ion-button *ngIf="flgBtn == 'companyLogo'" (click)="updateCompany()">
+          <ion-icon name="checkmark"></ion-icon>
+        </ion-button>
+      </ion-col>
+    </ion-row>
+    <div *ngIf="manageSelectedCompany != ''" ion-fixed class="pl10">
+      <accordion [showArrows]="true" class="" [closeOthers]="false">
+        <accordion-group heading="Attendance config">
+          <ion-row *ngIf="selectedDesignation != ''">
+            <ion-col col-8>
+              <ion-item>
+                <ion-label>Longitude </ion-label>
+                <ion-input
+                  (ionInput)="showButton('longitude')"
+                  type="text"
+                  name="longitude"
+                  [(ngModel)]="longitude"
+                ></ion-input>
+              </ion-item>
+            </ion-col>
+            <ion-col col-4>
+              <ion-button *ngIf="flgBtn == 'longitude'" (click)="updateArea()">
+                <ion-icon name="checkmark"></ion-icon>
+              </ion-button>
+            </ion-col>
+          </ion-row>
+          <ion-row *ngIf="selectedDesignation != ''">
+            <ion-col col-8>
+              <ion-item>
+                <ion-label>Latitude </ion-label>
+                <ion-input
+                  (ionInput)="showButton('latitude')"
+                  type="text"
+                  name="latitude"
+                  [(ngModel)]="latitude"
+                ></ion-input>
+              </ion-item>
+            </ion-col>
+            <ion-col col-4>
+              <ion-button *ngIf="flgBtn == 'latitude'" (click)="updateArea()">
+                <ion-icon name="checkmark"></ion-icon>
+              </ion-button>
+            </ion-col>
+          </ion-row>
+          <ion-row *ngIf="selectedDesignation != ''">
+            <ion-col col-8>
+              <ion-item>
+                <ion-label>Distance </ion-label>
+                <ion-input
+                  (ionInput)="showButton('distance')"
+                  type="text"
+                  name="distance"
+                  [(ngModel)]="distance"
+                ></ion-input>
+              </ion-item>
+            </ion-col>
+            <ion-col col-4>
+              <ion-button *ngIf="flgBtn == 'distance'" (click)="updateArea()">
+                <ion-icon name="checkmark"></ion-icon>
+              </ion-button>
+            </ion-col>
+          </ion-row>
+
+          <!-- <ion-col>
+                  <ion-item>
+                    <ion-label>Longitude </ion-label>
+                    <ion-input type="text" name="longitude" [(ngModel)]="longitude"></ion-input>
+                  </ion-item>
+                  <ion-item>
+                    <ion-label>Latitude </ion-label>
+                    <ion-input type="text" name="latitude" [(ngModel)]="latitude"></ion-input>
+                  </ion-item>
+                  <ion-item>
+                    <ion-label>Radius </ion-label>
+                    <ion-input type="text" name="distance" [(ngModel)]="distance"></ion-input>
+                  </ion-item>
+                  <ion-item>
+                    <ion-row class="width100">
+                      <ion-col class="tar">
+                        <ion-button (click)="updateArea()">Update</ion-button>
+                      </ion-col>
+                    </ion-row>
+                  </ion-item>
+                </ion-col> -->
+        </accordion-group>
+        <accordion-group heading="Actions">
+          <ngx-datatable
+            class="tal"
+            [headerHeight]="50"
+            [footerHeight]="60"
+            [rowHeight]="50"
+            [rows]="listOfActions"
+            columnMode="force"
+            [scrollbarV]="true"
+            class="ngx-datatable.scroll-vertical tal"
+          >
+            <ngx-datatable-column
+              prop="actionName"
+              name="Actions"
+              [flexGrow]="4"
+            >
+              <ng-template
+                let-row="row"
+                let-rowIndex="rowIndex"
+                let-value="value"
+                ngx-datatable-cell-template
+              >
+                <span (click)="getAllActionPermission(row)">
+                  {{ rowIndex + 1 }}
+                </span>
+              </ng-template>
+            </ngx-datatable-column>
+            <ngx-datatable-column
+              prop="actionName"
+              name="Actions"
+              [flexGrow]="4"
+            >
+              <ng-template
+                let-row="row"
+                let-value="value"
+                ngx-datatable-cell-template
+              >
+                <span (click)="getAllActionPermission(row)"> {{ value }} </span>
+              </ng-template>
+            </ngx-datatable-column>
+            <!-- <ngx-datatable-column name="Delete" [flexGrow]="1">
+                  <ng-template let-row="row" let-value="value" ngx-datatable-cell-template>
+                    <ion-button (click)="deleteRolePermission(row)"><ion-icon name="close"></ion-icon></ion-button>
+                  </ng-template>
+                </ngx-datatable-column> -->
+          </ngx-datatable>
+        </accordion-group>
+        <accordion-group heading="Action Permission" [isOpened]="isOpen">
+          <ion-col class="width100">
+            <ngx-datatable
+              [headerHeight]="50"
+              [footerHeight]="60"
+              [rowHeight]="50"
+              [rows]="listOfActionPermission"
+              columnMode="force"
+              [scrollbarV]="true"
+              class="ngx-datatable.scroll-vertical"
+            >
+              <ngx-datatable-column
+                prop="permissionName"
+                name="{{ heading }}"
+                [flexGrow]="3"
+              >
+                <ng-template
+                  let-row="row"
+                  let-value="value"
+                  ngx-datatable-cell-template
+                >
+                  {{ value }}
+                </ng-template>
+              </ngx-datatable-column>
+              <!-- <ngx-datatable-column name="Delete" [flexGrow]="1">
+                <ng-template let-row="row" let-value="value" ngx-datatable-cell-template>
+                  <ion-button (click)="deleteRolePermission(row)"><ion-icon name="close"></ion-icon></ion-button>
+                </ng-template>                                                                                                                                                                                                                  
+              </ngx-datatable-column> -->
+            </ngx-datatable>
+          </ion-col>
+        </accordion-group>
+        <accordion-group heading="User">
+          <ion-col class="width100">
+            <ngx-datatable
+              [headerHeight]="50"
+              [footerHeight]="60"
+              [rowHeight]="50"
+              [rows]="listOfUsers"
+              columnMode="force"
+              [scrollbarV]="true"
+              class="ngx-datatable.scroll-vertical"
+            >
+              <ngx-datatable-column
+                prop="username"
+                name="Username"
+                [flexGrow]="3"
+              >
+                <ng-template
+                  let-row="row"
+                  let-value="value"
+                  ngx-datatable-cell-template
+                >
+                  {{ value }}
+                </ng-template>
+              </ngx-datatable-column>
+              <ngx-datatable-column prop="name" name="Full Name" [flexGrow]="3">
+                <ng-template
+                  let-row="row"
+                  let-value="value"
+                  ngx-datatable-cell-template
+                >
+                  {{ value }}
+                </ng-template>
+              </ngx-datatable-column>
+              <!-- <ngx-datatable-column name="Delete" [flexGrow]="1">
+                <ng-template let-row="row" let-value="value" ngx-datatable-cell-template>
+                  <ion-button (click)="deleteRolePermission(row)"><ion-icon name="close"></ion-icon></ion-button>
+                </ng-template>                                                                                                                                                                                                                  
+              </ngx-datatable-column> -->
+            </ngx-datatable>
+          </ion-col>
+        </accordion-group>
+      </accordion>
+    </div>
+
+    <div ion-fixed>
+      <ion-fab bottom right class="t0 r0 p15p"
+        ><ion-button (click)="manageCompany()">Add</ion-button></ion-fab
+      >
+    </div>
+  </ion-content>
+</ion-split-pane>

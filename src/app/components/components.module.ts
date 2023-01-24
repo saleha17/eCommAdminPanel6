@@ -10,9 +10,17 @@ import { ManageActionsComponent } from './actions/manage-actions/manage-actions.
 import { UserComponent } from './actions/user/user.component';
 import { ManageUserComponent } from './actions/manage-user/manage-user.component';
 import { IonicSelectSearchableComponent } from './ionic-select-searchable/ionic-select-searchable.component';
+import { CompanyComponent } from './actions/company/company.component';
+import { AccordionModule } from 'ngx-accordion';
 
 @NgModule({
-  imports: [CommonModule, FormsModule, IonicModule, NgxDatatableModule],
+  imports: [
+    CommonModule,
+    FormsModule,
+    IonicModule,
+    NgxDatatableModule,
+    AccordionModule,
+  ],
   declarations: [
     RolesComponent,
     SplitPaneItemComponent,
@@ -21,6 +29,7 @@ import { IonicSelectSearchableComponent } from './ionic-select-searchable/ionic-
     UserComponent,
     ManageUserComponent,
     IonicSelectSearchableComponent,
+    CompanyComponent,
   ],
   entryComponents: [
     RolesComponent,
@@ -30,6 +39,7 @@ import { IonicSelectSearchableComponent } from './ionic-select-searchable/ionic-
     UserComponent,
     ManageUserComponent,
     IonicSelectSearchableComponent,
+    CompanyComponent,
   ],
 })
 export class ComponentsModule {}
