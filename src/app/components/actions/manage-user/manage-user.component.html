@@ -1,0 +1,186 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title *ngIf="isModal == 'addUserRole'" class="upperCase"
+      >Add role for {{ name }}</ion-title
+    >
+    <ion-title *ngIf="isModal == 'addUser'">Add User</ion-title>
+    <ion-title *ngIf="isModal == 'addWorkArea'">Add Work Area</ion-title>
+    <ion-buttons slot="end">
+      <ion-button ion-button (click)="closeModal()"> Close </ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content padding *ngIf="isModal == 'addUserRole'">
+  <ion-row class="width100">
+    <ion-col class="tac">
+      <ion-item>
+        <ion-label>Role</ion-label>
+        <ion-select
+          placeholder="Select Role"
+          [(ngModel)]="roleId"
+          class="tac width100 maxWidth100"
+        >
+          <ion-select-option *ngFor="let role of allRoles" [value]="role.id"
+            >{{ role.roleName }}
+          </ion-select-option>
+        </ion-select>
+      </ion-item>
+    </ion-col>
+  </ion-row>
+  <ion-row>
+    <ion-col class="tac">
+      <ion-button ion-button (click)="saveRoleForUser()"> Save </ion-button>
+    </ion-col>
+  </ion-row>
+</ion-content>
+<ion-content padding *ngIf="isModal == 'addUser'">
+  <ion-row>
+    <ion-col>
+      <ion-item>
+        <ion-label>Name</ion-label>
+        <ion-input
+          type="text"
+          name="fullName"
+          [(ngModel)]="fullName"
+          required
+        ></ion-input>
+      </ion-item>
+    </ion-col>
+  </ion-row>
+  <ion-row>
+    <ion-col>
+      <ion-item>
+        <ion-label>Phone Number</ion-label>
+        <ion-input
+          type="text"
+          name="username"
+          [(ngModel)]="username"
+          pattern="[0-9]{12}"
+          required
+        ></ion-input>
+      </ion-item>
+    </ion-col>
+  </ion-row>
+  <ion-row>
+    <ion-col>
+      <ion-item>
+        <ion-label>Biometric Id</ion-label>
+        <ion-input
+          type="text"
+          name="biometricId"
+          [(ngModel)]="biometricId"
+        ></ion-input>
+      </ion-item>
+    </ion-col>
+  </ion-row>
+  <ion-row>
+    <ion-col>
+      <ion-item>
+        <ion-label>Email</ion-label>
+        <ion-input
+          type="email"
+          name="email"
+          [(ngModel)]="email"
+          required
+        ></ion-input>
+      </ion-item>
+    </ion-col>
+  </ion-row>
+
+  <ion-row>
+    <ion-col>
+      <ion-item>
+        <ion-label>Designation</ion-label>
+        <ion-select
+          [(ngModel)]="designation"
+          class="tac width100 maxWidth100"
+          required
+        >
+          <ion-select-option
+            *ngFor="let item of getDesignationList"
+            [value]="item.shortName"
+            >{{ item.name }}</ion-select-option
+          >
+        </ion-select>
+      </ion-item>
+    </ion-col>
+  </ion-row>
+  <ion-row>
+    <ion-col>
+      <ion-item>
+        <ion-label>Department</ion-label>
+        <ion-select
+          [(ngModel)]="department"
+          class="tac width100 maxWidth100"
+          required
+        >
+          <ion-select-option
+            *ngFor="let item of getDepartmentList"
+            [value]="item.id"
+            >{{ item.name }}
+          </ion-select-option>
+        </ion-select>
+      </ion-item>
+    </ion-col>
+  </ion-row>
+  <ion-row>
+    <ion-col>
+      <ion-item>
+        <ion-label>Work Area</ion-label>
+        <!-- <ion-select multiple [(ngModel)]="areaIdsList" class="tac width100 maxWidth100" >
+                <ion-select-option *ngFor="let area of getAllWorkArea" [value]="area.id">{{area.name}}</ion-select-option>
+            </ion-select> -->
+        <app-ionic-select-searchable
+          class="width100"
+          [list]="getAllWorkArea"
+          [selectedValue]="areaIdsList"
+          [valueField]="id"
+          [textField]="name"
+        ></app-ionic-select-searchable>
+      </ion-item>
+    </ion-col>
+  </ion-row>
+  <ion-row>
+    <ion-col>
+      <ion-item>
+        <ion-label>Password </ion-label>
+        <ion-input
+          type="password"
+          name="Password"
+          [(ngModel)]="password"
+          required
+        ></ion-input>
+      </ion-item>
+    </ion-col>
+  </ion-row>
+  <ion-row>
+    <ion-col class="tac">
+      <ion-button (click)="createUser()"> Create User </ion-button>
+    </ion-col>
+  </ion-row>
+</ion-content>
+<ion-content padding *ngIf="isModal == 'addWorkArea'">
+  <ion-row>
+    <ion-col>
+      <ion-item>
+        <ion-label>Work Area</ion-label>
+        <!-- <ion-select multiple [(ngModel)]="areaIdsList" class="tac width100 maxWidth100">
+          <ion-select-option *ngFor="let area of getAllWorkArea" [value]="area.id">{{ area.name }}</ion-select-option>
+        </ion-select> -->
+        <app-ionic-select-searchable
+          class="width100"
+          [list]="getAllWorkArea"
+          [selectedValue]="areaIdsList"
+          [valueField]="id"
+          [textField]="name"
+        ></app-ionic-select-searchable>
+      </ion-item>
+    </ion-col>
+  </ion-row>
+  <ion-row>
+    <ion-col class="tac">
+      <ion-button (click)="createWorkArea()"> Add Work Area </ion-button>
+    </ion-col>
+  </ion-row>
+</ion-content>
