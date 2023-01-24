@@ -16,16 +16,21 @@ export class ManageActionsComponent implements OnInit {
   public listOfActions: any;
   public listOfActionPermission = [{ permissionName: 'Read' }];
   public selectedAction: '';
-  public description: '';
-  public username: '';
+  public description: 'This is Read Permisssion';
+  public username: 'Saleha';
 
   constructor() {}
 
   ngOnInit() {}
   async getUserData() {}
   setItems() {}
-  manageActionForPermission(item: any) {}
-  async searchManageActionForPermission(aName: any) {}
+  manageActionForPermission(item: any) {
+    this.searchManageActionForPermission(item.actionName);
+  }
+  async searchManageActionForPermission(aName: any) {
+    this.selectedAction = aName;
+    this.manageSelectedAction = aName;
+  }
   async getAllActions() {}
   logout() {}
 }
