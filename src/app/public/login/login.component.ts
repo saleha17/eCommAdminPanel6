@@ -13,7 +13,7 @@ export class LoginComponent implements OnInit {
   password = '';
 
   constructor(public navCtrl: NavController, private router: Router) {
-    // this.router.navigate(['app', 'dashboard']);
+    this.router.navigate(['app', 'dashboard']);
     console.log(this.companyLogo);
   }
 
