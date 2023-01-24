@@ -10,6 +10,7 @@ import { ManageActionsComponent } from './actions/manage-actions/manage-actions.
 import { UserComponent } from './actions/user/user.component';
 import { ManageUserComponent } from './actions/manage-user/manage-user.component';
 import { IonicSelectableModule } from 'ionic-selectable';
+import { IonicSelectSearchableComponent } from './ionic-select-searchable/ionic-select-searchable.component';
 
 @NgModule({
   imports: [
@@ -26,6 +27,7 @@ import { IonicSelectableModule } from 'ionic-selectable';
     ManageActionsComponent,
     UserComponent,
     ManageUserComponent,
+    IonicSelectSearchableComponent,
   ],
   entryComponents: [RolesComponent, SplitPaneItemComponent],
 })
