@@ -8,15 +8,24 @@ import { NgxDatatableModule } from '@swimlane/ngx-datatable';
 import { ManageRolesComponent } from './actions/manage-roles/manage-roles.component';
 import { ManageActionsComponent } from './actions/manage-actions/manage-actions.component';
 import { UserComponent } from './actions/user/user.component';
+import { ManageUserComponent } from './actions/manage-user/manage-user.component';
+import { IonicSelectableModule } from 'ionic-selectable';
 
 @NgModule({
-  imports: [CommonModule, FormsModule, IonicModule, NgxDatatableModule],
+  imports: [
+    CommonModule,
+    FormsModule,
+    IonicModule,
+    NgxDatatableModule,
+    IonicSelectableModule,
+  ],
   declarations: [
     RolesComponent,
     SplitPaneItemComponent,
     ManageRolesComponent,
     ManageActionsComponent,
     UserComponent,
+    ManageUserComponent,
   ],
   entryComponents: [RolesComponent, SplitPaneItemComponent],
 })

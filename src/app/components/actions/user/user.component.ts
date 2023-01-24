@@ -1,4 +1,6 @@
 import { Component, Input, OnInit } from '@angular/core';
+import { ModalController } from '@ionic/angular';
+import { ManageUserComponent } from '../manage-user/manage-user.component';
 
 @Component({
   selector: 'app-user',
@@ -49,7 +51,7 @@ export class UserComponent implements OnInit {
   public limit = 10;
   public refCompanyId = false;
   public userType = '';
-  constructor() {}
+  constructor(public modalCtrl: ModalController) {}
 
   ngOnInit() {}
   async getAllDesignation(desc) {}
@@ -68,7 +70,30 @@ export class UserComponent implements OnInit {
   async getAllUser(pNo) {}
   async fetchUsersByPagination(val) {}
   async filterItems(ev: any) {}
-  async addRoleForUser(id, flgModal) {}
+  async addRoleForUser(id, flgModal) {
+    console.log(flgModal);
+    let obj;
+    if (flgModal == 'addWorkArea') {
+      obj = {
+        id: id,
+        username: this.manageSelectedUser,
+        flgModal: flgModal,
+        data: this.listOfArea,
+      };
+    } else {
+      obj = {
+        id: id,
+        username: this.manageSelectedUser,
+        flgModal: flgModal,
+      };
+    }
+    let modalPage = await this.modalCtrl.create({
+      component: ManageUserComponent,
+      componentProps: obj,
+    });
+    modalPage.onDidDismiss().then((d: any) => this.handleModalDismiss(d));
+    await modalPage.present();
+  }
   async handleModalDismiss(d) {}
   async deleteUserRole(id) {}
   async onChange(name) {}
