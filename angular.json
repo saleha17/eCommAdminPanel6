@@ -31,7 +31,7 @@
                 "output": "./svg"
               }
             ],
-            "styles": ["src/styles.scss"],
+            "styles": ["src/styles.scss", "src/theme/variables.scss"],
             "scripts": []
           },
           "configurations": {
@@ -78,7 +78,7 @@
             "polyfills": "src/polyfills.ts",
             "tsConfig": "src/tsconfig.spec.json",
             "karmaConfig": "src/karma.conf.js",
-            "styles": ["styles.scss"],
+            "styles": ["styles.scss", "src/theme/variables.scss"],
             "scripts": [],
             "assets": ["src/favicon.ico", "src/assets"]
           }
