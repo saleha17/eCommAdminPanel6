@@ -1,0 +1,44 @@
+.gridBorder {
+  border: solid 1px grey;
+}
+
+div[scrollx='true'],
+div[scrolly='true'] {
+  position: relative;
+  overflow-y: auto;
+
+  ::-webkit-scrollbar {
+    display: none;
+  }
+}
+
+div[scrollx='true'] {
+  overflow-x: auto;
+}
+
+div[scrolly='true'] {
+  overflow-y: auto;
+}
+
+#myFixZone {
+  will-change: scroll-position;
+  overscroll-behavior: contain;
+  position: fixed;
+  height: 25%;
+}
+ion-toolbar {
+  --background: transparent;
+  --ion-color-base: transparent !important;
+}
+
+.scrollArea {
+  height: 60%;
+  overflow-y: scroll;
+}
+
+.width50 {
+  width: 50%;
+}
+.ngx-datatable.scroll-vertical {
+  height: 40vh;
+}

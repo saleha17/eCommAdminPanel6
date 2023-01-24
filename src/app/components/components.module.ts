@@ -7,6 +7,7 @@ import { SplitPaneItemComponent } from './split-pane-item/split-pane-item.compon
 import { NgxDatatableModule } from '@swimlane/ngx-datatable';
 import { ManageRolesComponent } from './actions/manage-roles/manage-roles.component';
 import { ManageActionsComponent } from './actions/manage-actions/manage-actions.component';
+import { UserComponent } from './actions/user/user.component';
 
 @NgModule({
   imports: [CommonModule, FormsModule, IonicModule, NgxDatatableModule],
@@ -15,6 +16,7 @@ import { ManageActionsComponent } from './actions/manage-actions/manage-actions.
     SplitPaneItemComponent,
     ManageRolesComponent,
     ManageActionsComponent,
+    UserComponent,
   ],
   entryComponents: [RolesComponent, SplitPaneItemComponent],
 })

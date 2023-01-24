@@ -1,0 +1,475 @@
+<ion-split-pane [when]="true">
+  <ion-menu>
+    <ion-nav swipeBackEnabled="false" main>
+      <!-- <ion-searchbar [(ngModel)]="manageSelectedUser" placeholder="Search User" showCancelButton (ionInput)="filterItems($event)" (keyup.enter)="getUserDetail()" (keydown)="keyDown($event)"></ion-searchbar> -->
+      <ion-content class="hScroll bgDarkBlue">
+        <!-- <ion-list class="bgTransparent">
+        <ion-item *ngFor="let item of items" [ngClass]="item.username == tempUserName ? (item.isDeleted == 1 ? 'bgRed' : 'activeItem') : ''" (click)="getUserDetail(item)"> {{ item.name }} </ion-item>
+      </ion-list> -->
+        <app-split-pane-item
+          [val]="items"
+          StingName="name"
+          (callFunction)="getUserDetail($event)"
+          (callIonInput)="filterItems($event)"
+        ></app-split-pane-item>
+      </ion-content>
+    </ion-nav>
+  </ion-menu>
+  <ion-content main>
+    <h4
+      *ngIf="manageSelectedUser == '' && deletedUsers != 'true'"
+      class="tac top smallCaps"
+    >
+      Please select User from left menu to view its details
+    </h4>
+    <h4
+      *ngIf="manageSelectedUser == '' && deletedUsers == 'true'"
+      class="tac top smallCaps"
+    >
+      Please select Deleted User from left menu to view its details
+    </h4>
+    <ion-list>
+      <ion-row>
+        <ion-col
+          *ngIf="manageSelectedUser != ''"
+          class="tal p15p upperCase mediumFont"
+        >
+          {{ fullName }}
+        </ion-col>
+      </ion-row>
+    </ion-list>
+    <ion-row>
+      <ion-col size="9">
+        <ion-row *ngIf="manageSelectedUser != ''">
+          <ion-col size="10">
+            <ion-item>
+              <ion-label>Name </ion-label>
+              <ion-input
+                (ionInput)="showButton('fullName')"
+                type="text"
+                name="fullName"
+                [(ngModel)]="fullName"
+              >
+              </ion-input>
+            </ion-item>
+          </ion-col>
+          <ion-col size="2">
+            <ion-button
+              *ngIf="
+                flgBtn == 'fullName' &&
+                (isDeleted == 0 || isDeleted == null) &&
+                userType != 'Customer'
+              "
+              (click)="updateUser()"
+            >
+              <ion-icon name="checkmark"></ion-icon>
+            </ion-button>
+          </ion-col>
+        </ion-row>
+        <ion-row *ngIf="manageSelectedUser != ''">
+          <ion-col size="10">
+            <ion-item>
+              <ion-label>Phone Number </ion-label>
+              <ion-input
+                (ionInput)="showButton('userName')"
+                type="text"
+                name="username"
+                [(ngModel)]="username"
+              >
+              </ion-input>
+            </ion-item>
+          </ion-col>
+          <ion-col size="2">
+            <ion-button
+              *ngIf="
+                flgBtn == 'userName' &&
+                (isDeleted == 0 || isDeleted == null) &&
+                userType != 'Customer'
+              "
+              (click)="updateUser()"
+            >
+              <ion-icon name="checkmark"></ion-icon>
+            </ion-button>
+          </ion-col>
+        </ion-row>
+        <ion-row *ngIf="manageSelectedUser != ''">
+          <ion-col size="10">
+            <ion-item>
+              <ion-label>Biometric Id </ion-label>
+              <ion-input
+                (ionInput)="showButton('biometricId')"
+                type="text"
+                name="biometricId"
+                [(ngModel)]="biometricId"
+              >
+              </ion-input>
+            </ion-item>
+          </ion-col>
+          <ion-col size="2">
+            <ion-button
+              *ngIf="
+                flgBtn == 'biometricId' &&
+                (isDeleted == 0 || isDeleted == null) &&
+                userType != 'Customer'
+              "
+              (click)="updateUser()"
+            >
+              <ion-icon name="checkmark"></ion-icon>
+            </ion-button>
+          </ion-col>
+        </ion-row>
+
+        <ion-row *ngIf="manageSelectedUser != ''">
+          <ion-col size="10">
+            <ion-item>
+              <ion-label>Email </ion-label>
+              <ion-input
+                (ionInput)="showButton('email')"
+                type="email"
+                name="email"
+                [(ngModel)]="email"
+              ></ion-input>
+            </ion-item>
+          </ion-col>
+          <ion-col size="2">
+            <ion-button
+              *ngIf="
+                flgBtn == 'email' &&
+                (isDeleted == 0 || isDeleted == null) &&
+                userType != 'Customer'
+              "
+              (click)="updateUser()"
+            >
+              <ion-icon name="checkmark"></ion-icon>
+            </ion-button>
+          </ion-col>
+        </ion-row>
+
+        <ion-row *ngIf="manageSelectedUser != ''">
+          <ion-col size="10">
+            <ion-item>
+              <ion-label>Designation</ion-label>
+              <ion-select
+                (ionChange)="onChange('designation')"
+                [(ngModel)]="designation"
+                class="tal width100 maxWidth100"
+                required
+              >
+                <ion-select-option
+                  *ngFor="let item of getDesignationList"
+                  [value]="item.shortName"
+                  >{{ item.name }}
+                </ion-select-option>
+              </ion-select>
+            </ion-item>
+          </ion-col>
+          <ion-col size="2">
+            <ion-button
+              *ngIf="
+                flgBtn == 'designation' &&
+                (isDeleted == 0 || isDeleted == null) &&
+                userType != 'Customer'
+              "
+              (click)="updateUser()"
+            >
+              <ion-icon name="checkmark"></ion-icon>
+            </ion-button>
+          </ion-col>
+        </ion-row>
+        <ion-row *ngIf="manageSelectedUser != ''">
+          <ion-col size="10">
+            <ion-item>
+              <ion-label>Department </ion-label>
+              <ion-select
+                (ionChange)="onChange('department')"
+                [(ngModel)]="department"
+                class="tal width100 maxWidth100"
+                required
+              >
+                <ion-select-option
+                  *ngFor="let item of getDepartmentList"
+                  [value]="item.id"
+                  >{{ item.name }}</ion-select-option
+                >
+              </ion-select>
+            </ion-item>
+          </ion-col>
+          <ion-col size="2">
+            <ion-button
+              *ngIf="
+                flgBtn == 'department' &&
+                (isDeleted == 0 || isDeleted == null) &&
+                userType != 'Customer'
+              "
+              (click)="updateUser()"
+            >
+              <ion-icon name="checkmark"></ion-icon>
+            </ion-button>
+          </ion-col>
+        </ion-row>
+        <ion-row *ngIf="manageSelectedUser != '' && companyName != ''">
+          <ion-col size="10">
+            <ion-item>
+              <ion-label>Customer Name</ion-label>
+              <ion-input
+                type="text"
+                name="companyName"
+                [(ngModel)]="companyName"
+                disabled
+              ></ion-input>
+            </ion-item>
+          </ion-col>
+          <ion-col size="2"> </ion-col>
+        </ion-row>
+      </ion-col>
+      <ion-col
+        size="3"
+        *ngIf="
+          manageSelectedUser != '' && (image != null || image != undefined)
+        "
+      >
+        <img [src]="image" />
+      </ion-col>
+      <ion-col size="3" *ngIf="manageSelectedUser != '' && image == null">
+        <img src="assets/icon/user.png" />
+      </ion-col>
+    </ion-row>
+    <ion-row *ngIf="manageSelectedUser != '' && deletionAllow">
+      <ion-col class="tar" *ngIf="isDeleted == 0 || isDeleted == null">
+        <ion-button (click)="deleteOrActivate()">Delete</ion-button>
+      </ion-col>
+      <ion-col class="tar" *ngIf="isDeleted == 1">
+        <ion-button (click)="deleteOrActivate()">Activate</ion-button>
+      </ion-col>
+    </ion-row>
+    <!-- <ion-row *ngIf="selectedUser != '' && designation != 'MD'">
+    <ion-col col-8>
+      <ion-item>
+        <ion-label>Select Parent</ion-label>
+        <ion-select (ionChange)="onChange('parentNo')" [(ngModel)]="parentNo" class="tac width100 maxWidth100">
+          <ion-select-option *ngFor="let item of getAllUserData" [value]="item.username">{{ item.name }}</ion-select-option>
+        </ion-select>
+      </ion-item>
+    </ion-col>
+    <ion-col col-4>
+      <ion-button *ngIf="flgBtn == 'parentNo'" (click)="updateUser()"><ion-icon name="checkmark"></ion-icon></ion-button>
+    </ion-col>
+  </ion-row> -->
+    <br />
+    <!-- <ion-row>
+    <ion-col>
+        <ion-row *ngIf="selectedUser != ''">
+            <ion-grid>
+              <ion-list>
+                <ion-item>
+                  <ion-row>
+                    <ion-col class="tal"><b> Roles </b></ion-col>
+                    <ion-col class="tar"> <ion-button (click)="addRoleForUser(id, 'addUserRole')"> Add Role </ion-button> </ion-col>
+                  </ion-row>
+                </ion-item>
+              </ion-list>
+              <div scrollY="true" class="width50" id="myFixZone">
+                <ion-list *ngIf="listOfRoles.length > 0">
+                  <ion-item *ngFor="let role of listOfRoles">
+                    <ion-row class="width100">
+                      <ion-col class="tal"> {{ role.roleName }} </ion-col>
+                      <ion-col class="tar">
+                        <ion-button color="danger" (click)="deleteUserRole(role.id)"> <ion-icon name="close"></ion-icon> </ion-button>
+                      </ion-col>
+                    </ion-row>
+                  </ion-item>
+                </ion-list>
+              </div>
+              <ion-list *ngIf="listOfRoles.length == 0">
+                <ion-item>
+                  <ion-row class="width100">
+                    <ion-col class="tac"> No Role Found! </ion-col>
+                    <ion-col class="tac"></ion-col>
+                  </ion-row>
+                </ion-item>
+              </ion-list>
+              <ngx-datatable
+              sortType="multi" [headerHeight]="50" [footerHeight]="50" [rowHeight]="50" [rows]="listOfRoles" columnMode="force" [limit]="10">
+              <ngx-datatable-column prop="roleName" name="Roles" [flexGrow]="3">
+                <ng-template let-row="row" let-value="value" ngx-datatable-cell-template>
+                    {{value}}
+                </ng-template>
+              </ngx-datatable-column>
+              <ngx-datatable-column name="Delete" [flexGrow]="1">
+                <ng-template let-row="row" let-value="value" ngx-datatable-cell-template>
+                  <ion-button color="danger" (click)="deleteRolePermission(row)"><ion-icon name="close"></ion-icon></ion-button>
+                </ng-template>
+              </ngx-datatable-column>
+            </ngx-datatable>
+          </ion-grid>
+        </ion-row>
+    </ion-col>
+    <ion-col>
+        <ion-row *ngIf="selectedUser != ''">
+            <ion-grid>
+              <ion-list>
+                <ion-item>
+                  <ion-row>
+                    <ion-col class="tal"><b> Work Area </b></ion-col>
+                    <ion-col class="tar"> <ion-button (click)="addRoleForUser(id, 'addWorkArea')"> Add Work Area </ion-button> </ion-col>
+                  </ion-row>
+                </ion-item>
+              </ion-list>
+              <div scrollY="true" class="width50" id="myFixZone">
+                <ion-list *ngIf="listOfArea.length > 0">
+                  <ion-item *ngFor="let area of listOfArea">
+                    <ion-row class="width100">
+                      <ion-col class="tal"> {{ area.name }} </ion-col>
+                      <ion-col class="tar">
+                        <ion-button color="danger" (click)="deleteWorkAreaFromUser(area.workAreaId)"> <ion-icon name="close"></ion-icon> </ion-button>
+                      </ion-col>
+                    </ion-row>
+                  </ion-item>
+                </ion-list>
+              </div>
+              <ion-list *ngIf="listOfArea.length == 0">
+                <ion-item>
+                  <ion-row class="width100">
+                    <ion-col class="tac"> No Work Area Found! </ion-col>
+                    <ion-col class="tac"></ion-col>
+                  </ion-row>
+                </ion-item>
+              </ion-list>
+              <ngx-datatable
+              sortType="multi" [headerHeight]="50" [footerHeight]="50" [rowHeight]="50" [rows]="listOfArea" columnMode="force" [limit]="10">
+              <ngx-datatable-column prop="name" name="Work Area" [flexGrow]="3">
+                <ng-template let-row="row" let-value="value" ngx-datatable-cell-template>
+                    {{value}}
+                </ng-template>
+              </ngx-datatable-column>
+              <ngx-datatable-column name="Delete" [flexGrow]="1">
+                <ng-template let-row="row" let-value="value" ngx-datatable-cell-template>
+                  <ion-button color="danger" (click)="deleteRolePermission(row)"><ion-icon name="close"></ion-icon></ion-button>
+                </ng-template>
+              </ngx-datatable-column>
+            </ngx-datatable>
+            </ion-grid>
+          </ion-row>
+    </ion-col>
+  </ion-row> -->
+    <ion-row *ngIf="manageSelectedUser != ''">
+      <ion-col side="6">
+        <ion-item>
+          <b class="tal"> Roles </b>
+          <ion-button
+            *ngIf="isDeleted == 0 || isDeleted == null"
+            slot="end"
+            style="padding:5px;"
+            (click)="addRoleForUser(id, 'addUserRole')"
+          >
+            <ion-icon name="add"></ion-icon>
+          </ion-button>
+        </ion-item>
+      </ion-col>
+      <ion-col side="6">
+        <ion-item>
+          <ion-row class="width100">
+            <ion-col class="tal"><b> Work Area </b></ion-col>
+            <ion-col class="tar" *ngIf="isDeleted == 0 || isDeleted == null">
+              <ion-button (click)="addRoleForUser(id, 'addWorkArea')">
+                <ion-icon name="add"></ion-icon>
+              </ion-button>
+            </ion-col>
+          </ion-row>
+        </ion-item>
+      </ion-col>
+    </ion-row>
+    <ion-row *ngIf="manageSelectedUser != ''">
+      <ion-col size="6">
+        <ngx-datatable
+          [headerHeight]="50"
+          [footerHeight]="60"
+          [rowHeight]="35"
+          [rows]="listOfRoles"
+          columnMode="force"
+          [scrollbarV]="true"
+          class="ngx-datatable.scroll-vertical"
+        >
+          <ngx-datatable-column prop="roleName" name="Roles" [flexGrow]="3">
+            <ng-template
+              let-row="row"
+              let-value="value"
+              ngx-datatable-cell-template
+            >
+              {{ value }}
+            </ng-template>
+          </ngx-datatable-column>
+          <ngx-datatable-column
+            name="Delete"
+            [flexGrow]="1"
+            *ngIf="
+              (isDeleted == 0 || isDeleted == null) && userType != 'Customer'
+            "
+          >
+            <ng-template
+              let-row="row"
+              let-val
+              ue="value"
+              ngx-datatable-cell-template
+            >
+              <ion-button
+                size="small"
+                class="bgTransparent boxShadowRemove darkRed"
+                (click)="deleteUserRole(row.id)"
+              >
+                <ion-icon name="close"></ion-icon>
+              </ion-button>
+            </ng-template>
+          </ngx-datatable-column>
+        </ngx-datatable>
+      </ion-col>
+      <ion-col size="6">
+        <ngx-datatable
+          [headerHeight]="50"
+          [footerHeight]="60"
+          [rowHeight]="35"
+          [rows]="listOfArea"
+          columnMode="force"
+          [scrollbarV]="true"
+          class="ngx-datatable.scroll-vertical"
+        >
+          <ngx-datatable-column prop="name" name="Work Area" [flexGrow]="3">
+            <ng-template
+              let-row="row"
+              let-value="value"
+              ngx-datatable-cell-template
+            >
+              {{ value }}
+            </ng-template>
+          </ngx-datatable-column>
+          <ngx-datatable-column
+            name="Delete"
+            [flexGrow]="1"
+            *ngIf="
+              (isDeleted == 0 || isDeleted == null) && userType != 'Customer'
+            "
+          >
+            <ng-template
+              let-row="row"
+              let-value="value"
+              ngx-datatable-cell-template
+            >
+              <ion-button
+                size="small"
+                class="bgTransparent boxShadowRemove darkRed"
+                (click)="deleteWorkAreaFromUser(row.workAreaId)"
+              >
+                <ion-icon name="close"></ion-icon>
+              </ion-button>
+            </ng-template>
+          </ngx-datatable-column>
+        </ngx-datatable>
+      </ion-col>
+    </ion-row>
+    <div ion-fixed *ngIf="deletedUsers != 'true'">
+      <ion-fab bottom right class="t0 r0 p15p">
+        <ion-button (click)="addRoleForUser(id, 'addUser')">Add</ion-button>
+      </ion-fab>
+    </div>
+  </ion-content>
+</ion-split-pane>
