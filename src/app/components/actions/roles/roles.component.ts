@@ -37,7 +37,9 @@ export class RolesComponent implements OnInit {
   async filterActions(ev: any) {}
   keyDownActions(event: KeyboardEvent) {}
   async deleteRolePermission(rolePermission) {}
-  async searchRole(roleName) {}
+  async searchRole(roleName) {
+    this.manageSelectedRole = roleName;
+  }
   async addRoleActionPermission(selectedRole) {}
   async addRole() {}
   async showButton(name) {}
