@@ -9,17 +9,10 @@ import { ManageRolesComponent } from './actions/manage-roles/manage-roles.compon
 import { ManageActionsComponent } from './actions/manage-actions/manage-actions.component';
 import { UserComponent } from './actions/user/user.component';
 import { ManageUserComponent } from './actions/manage-user/manage-user.component';
-import { IonicSelectableModule } from 'ionic-selectable';
 import { IonicSelectSearchableComponent } from './ionic-select-searchable/ionic-select-searchable.component';
 
 @NgModule({
-  imports: [
-    CommonModule,
-    FormsModule,
-    IonicModule,
-    NgxDatatableModule,
-    IonicSelectableModule,
-  ],
+  imports: [CommonModule, FormsModule, IonicModule, NgxDatatableModule],
   declarations: [
     RolesComponent,
     SplitPaneItemComponent,
@@ -29,6 +22,10 @@ import { IonicSelectSearchableComponent } from './ionic-select-searchable/ionic-
     ManageUserComponent,
     IonicSelectSearchableComponent,
   ],
-  entryComponents: [RolesComponent, SplitPaneItemComponent],
+  entryComponents: [
+    RolesComponent,
+    SplitPaneItemComponent,
+    IonicSelectSearchableComponent,
+  ],
 })
 export class ComponentsModule {}
