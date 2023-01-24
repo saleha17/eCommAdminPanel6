@@ -1,0 +1,97 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>{{ title }}</ion-title>
+    <ion-buttons slot="end">
+      <ion-button (click)="closeModal()"> Close </ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+<ion-content padding>
+  <ion-list *ngIf="type == '1'">
+    <ion-item>
+      <ion-col> <ion-label>Role</ion-label> </ion-col>
+      <ion-col>
+        <ion-input
+          type="text"
+          class="tac"
+          id="roleName"
+          name="roleName"
+          [(ngModel)]="roleName"
+          disabled="true"
+        ></ion-input>
+      </ion-col>
+    </ion-item>
+    <ion-item>
+      <ion-col> <ion-label>Action</ion-label> </ion-col>
+      <ion-col>
+        <!-- <ionic-selectable
+        [(ngModel)]="selectedActionName"
+        [items]="listOfActions"
+        class="tac maxWidth100" (ionChange)="onActionSelect()"
+        [canSearch]="true"
+        itemValueField="id"
+        itemTextField="actionName"
+        (onChange)="portChange($event)">
+      </ionic-selectable> -->
+        <ion-select
+          [(ngModel)]="selectedActionName"
+          class="tac maxWidth100"
+          (ionChange)="onActionSelect()"
+        >
+          <ion-select-option *ngFor="let action of listOfActions">{{
+            action.actionName
+          }}</ion-select-option>
+        </ion-select>
+      </ion-col>
+    </ion-item>
+    <ion-item>
+      <ion-col> <ion-label>Permissions</ion-label> </ion-col>
+      <ion-col>
+        <ion-select
+          [(ngModel)]="selectedPermissionName"
+          class="tac maxWidth100"
+        >
+          <ion-select-option
+            *ngFor="let permission of listOfActionsPermissions"
+            >{{ permission.permissionName }}</ion-select-option
+          >
+        </ion-select>
+      </ion-col>
+    </ion-item>
+    <ion-item class="bw0">
+      <ion-button slot="start" (click)="closeModal()">Cancel</ion-button>
+      <ion-button slot="end" (click)="addRoleActionPermission()"
+        >Add</ion-button
+      >
+    </ion-item>
+  </ion-list>
+  <ion-list *ngIf="type == '2'">
+    <ion-item>
+      <ion-label>Role</ion-label>
+      <ion-input
+        type="text"
+        placeholder="Enter Role Name"
+        class="tal"
+        id="newRoleName"
+        name="newRoleName"
+        [(ngModel)]="newRoleName"
+        required
+      ></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-label>Description</ion-label>
+      <ion-input
+        type="text"
+        placeholder="Enter description"
+        class="tal"
+        id="description"
+        name="description"
+        [(ngModel)]="description"
+        required
+      ></ion-input>
+    </ion-item>
+    <ion-item class="bw0">
+      <ion-button slot="end" (click)="addRole()">Add</ion-button>
+    </ion-item>
+  </ion-list>
+</ion-content>
