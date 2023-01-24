@@ -11,7 +11,11 @@ export class RolesComponent implements OnInit {
   @Input() data: any;
   @Input() cid: any;
 
-  public listOfRoles: any;
+  public listOfRoles = [
+    { roleName: 'Admin' },
+    { roleName: 'User' },
+    { roleName: 'Customer' },
+  ];
   public selectedRole = '';
   public items = [{ roleName: 'Admin' }];
   public itemsActions = [{ actionName: 'Orders', permissionName: 'read' }];
@@ -42,7 +46,20 @@ export class RolesComponent implements OnInit {
   async searchRole(roleName) {
     this.manageSelectedRole = roleName;
   }
-  async addRoleActionPermission(selectedRole) {}
+  async addRoleActionPermission(selectedRole) {
+    let role = this.listOfRoles.filter((item) => {
+      if (item.roleName == selectedRole) {
+        return item;
+      }
+    });
+    console.log('role', role);
+    const modal = await this.modalCtrl.create({
+      component: ManageRolesComponent,
+      componentProps: { role: role, type: 1 },
+    });
+    modal.onDidDismiss().then((d: any) => this.handleModalDismiss(d));
+    return await modal.present();
+  }
   async addRole() {
     const modal = await this.modalCtrl.create({
       component: ManageRolesComponent,
