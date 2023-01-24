@@ -13,7 +13,13 @@ export class UserComponent implements OnInit {
   public getAllUserData: any;
   public manageSelectedUser: '';
   public selectedUser: '';
-  public items: any;
+  public items = [
+    { name: 'Saleha' },
+    { name: 'Tamim' },
+    { name: 'Seema' },
+    { name: 'Henry' },
+    { name: 'Edward' },
+  ];
   public id: any;
   public arrowKeyLocation = -1;
   public fullName = '';
@@ -51,8 +57,14 @@ export class UserComponent implements OnInit {
   getAppName() {}
   async getCompanyId() {}
   setItems() {}
-  getUserDetail(username) {}
-  async searchUser(user) {}
+  getUserDetail(username) {
+    this.searchUser(username);
+  }
+  async searchUser(user) {
+    this.deletionAllow = false;
+    this.manageSelectedUser = user.name;
+    this.selectedUser = user.userName;
+  }
   async getAllUser(pNo) {}
   async fetchUsersByPagination(val) {}
   async filterItems(ev: any) {}
