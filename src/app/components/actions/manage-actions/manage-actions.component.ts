@@ -15,9 +15,9 @@ export class ManageActionsComponent implements OnInit {
   public arrowKeyLocation = -1;
   public listOfActions: any;
   public listOfActionPermission = [{ permissionName: 'Read' }];
-  public selectedAction: '';
-  public description: 'This is Read Permisssion';
-  public username: 'Saleha';
+  public selectedAction = 'ManageUsers';
+  public description = 'This is Read Permisssion';
+  public username = 'Saleha';
 
   constructor() {}
 
