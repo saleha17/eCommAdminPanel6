@@ -56,7 +56,7 @@ const themes = {
 export class AppComponent {
   name = 'Angular ' + VERSION.major;
   constructor(private theme: ThemeService) {
-    this.changeTheme('benara');
+    this.changeTheme('autumn');
   }
 
   segmentChanged(ev: any) {
