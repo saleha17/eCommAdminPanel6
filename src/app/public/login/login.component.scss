@@ -16,7 +16,8 @@ ion-item {
   opacity: 0.7;
   font-size: 0.9em;
   --highlight-color-focused: transparent;
-  border-bottom: none !important;
+  --border-width: 0 0 0 0;
+  --border-style: none;
 }
 
 ion-list {
