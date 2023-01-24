@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { NavParams } from '@ionic/angular';
 
 @Component({
   selector: 'app-manage-user',
@@ -30,9 +31,11 @@ export class ManageUserComponent implements OnInit {
   public areaIdsList = [];
   public refCompanyId: any;
 
-  constructor() {}
+  constructor(private navParams: NavParams) {}
 
-  ngOnInit() {}
+  ngOnInit() {
+    this.isModal = this.navParams.get('flgModal');
+  }
   async getWorkArea() {}
   async getAllDesignation() {}
   async getAllDepartment() {}
