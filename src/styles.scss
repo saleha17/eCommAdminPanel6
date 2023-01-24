@@ -169,6 +169,7 @@ ion-item {
   --highlight-color-focused: transparent;
   color: #000;
   font-size: $smallFont;
+  --border-width: 0 0 0 0;
 }
 ion-label {
   font-variant: small-caps;
