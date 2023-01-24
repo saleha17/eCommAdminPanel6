@@ -1,0 +1,60 @@
+<ion-split-pane>
+  <ion-menu>
+    <ion-nav swipeBackEnabled="false" main>
+      <!-- <ion-searchbar [(ngModel)]="manageSelectedAction" placeholder="Search Actions" showCancelButton (ionInput)="filterItems($event)" (keyup.enter)="searchManageActionForPermission()" (keydown)="keyDown($event)"></ion-searchbar> -->
+      <ion-content class="hScroll bgDarkBlue">
+        <!-- <ion-list class="bgTransparent">
+          <ion-item *ngFor="let item of items" [ngClass]="item.actionName == manageSelectedAction ? 'activeItem' : ''" (click)="manageActionForPermission($event, item)"> {{ item.actionName }} </ion-item>
+        </ion-list> -->
+        <app-split-pane-item
+          [val]="items"
+          StingName="actionName"
+          (callFunction)="manageActionForPermission($event)"
+          (callKeyupEnter)="searchManageActionForPermission('')"
+        ></app-split-pane-item>
+      </ion-content>
+    </ion-nav>
+  </ion-menu>
+  <ion-content main>
+    <h4 *ngIf="selectedAction == ''" class="tac top smallCaps">
+      Please select Action from left menu to view Action Permission
+    </h4>
+    <ion-row class="p15p upperCase" *ngIf="selectedAction != ''">
+      <h3 class="mediumFont">{{ selectedAction }}</h3>
+    </ion-row>
+    <ion-row class="h20" *ngIf="selectedAction != ''">
+      <h3 class="smallFont">{{ description }}</h3>
+    </ion-row>
+    <!-- <h4 class="tac" *ngIf="selectedAction != ''">Action Permission</h4> -->
+    <ion-row *ngIf="selectedAction != ''">
+      <!-- <ion-grid class="width100">
+        <ion-list>
+          <ion-item *ngFor="let item of listOfActionPermission; let i = index">
+            <ion-row class="width100">
+              <ion-col class="tal"> {{ item.permissionName }} </ion-col>
+            </ion-row>
+          </ion-item>
+        </ion-list>
+      </ion-grid> -->
+      <ngx-datatable
+        [headerHeight]="50"
+        [footerHeight]="60"
+        [rowHeight]="50"
+        [rows]="listOfActionPermission"
+        columnMode="force"
+        [scrollbarV]="true"
+        class="ngx-datatable.scroll-vertical"
+      >
+        <ngx-datatable-column prop="permissionName" [flexGrow]="3">
+          <ng-template
+            let-row="row"
+            let-value="value"
+            ngx-datatable-cell-template
+          >
+            {{ value }}
+          </ng-template>
+        </ngx-datatable-column>
+      </ngx-datatable>
+    </ion-row>
+  </ion-content>
+</ion-split-pane>

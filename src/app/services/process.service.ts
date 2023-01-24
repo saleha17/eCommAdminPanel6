@@ -1,4 +1,5 @@
 import { Injectable } from '@angular/core';
+import { ManageActionsComponent } from '../components/actions/manage-actions/manage-actions.component';
 import { RolesComponent } from '../components/actions/roles/roles.component';
 import { ProcessActionItem } from '../components/processActionItem';
 
@@ -29,6 +30,8 @@ export class ProcessService {
   private resolveComponentsName(actionName) {
     if (actionName == 'Roles') {
       return RolesComponent;
+    } else if (actionName == 'Manage Actions') {
+      return ManageActionsComponent;
     }
   }
 }

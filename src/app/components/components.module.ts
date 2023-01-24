@@ -6,10 +6,16 @@ import { RolesComponent } from './actions/roles/roles.component';
 import { SplitPaneItemComponent } from './split-pane-item/split-pane-item.component';
 import { NgxDatatableModule } from '@swimlane/ngx-datatable';
 import { ManageRolesComponent } from './actions/manage-roles/manage-roles.component';
+import { ManageActionsComponent } from './actions/manage-actions/manage-actions.component';
 
 @NgModule({
   imports: [CommonModule, FormsModule, IonicModule, NgxDatatableModule],
-  declarations: [RolesComponent, SplitPaneItemComponent, ManageRolesComponent],
+  declarations: [
+    RolesComponent,
+    SplitPaneItemComponent,
+    ManageRolesComponent,
+    ManageActionsComponent,
+  ],
   entryComponents: [RolesComponent, SplitPaneItemComponent],
 })
 export class ComponentsModule {}
