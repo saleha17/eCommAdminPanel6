@@ -36,7 +36,7 @@
         }}</ion-col>
       </ion-row>
       <ion-row *ngIf="manageSelectedRole != ''">
-        <ion-col col-8>
+        <ion-col size="8">
           <ion-item>
             <ion-label>Role Name </ion-label>
             <ion-input
@@ -47,14 +47,14 @@
             ></ion-input>
           </ion-item>
         </ion-col>
-        <ion-col col-4>
+        <ion-col size="4">
           <ion-button *ngIf="flagButton == 'roleName'" (click)="updateRole()"
             ><ion-icon name="checkmark"></ion-icon
           ></ion-button>
         </ion-col>
       </ion-row>
       <ion-row *ngIf="manageSelectedRole != ''">
-        <ion-col col-8>
+        <ion-col size="8">
           <ion-item>
             <ion-label>Description </ion-label>
             <ion-input
@@ -65,7 +65,7 @@
             ></ion-input>
           </ion-item>
         </ion-col>
-        <ion-col col-4>
+        <ion-col size="4">
           <ion-button *ngIf="flagButton == 'description'" (click)="updateRole()"
             ><ion-icon name="checkmark"></ion-icon
           ></ion-button>

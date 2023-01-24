@@ -1,4 +1,6 @@
 import { Component, Input, OnInit } from '@angular/core';
+import { ModalController } from '@ionic/angular';
+import { ManageRolesComponent } from '../manage-roles/manage-roles.component';
 
 @Component({
   selector: 'app-roles',
@@ -18,11 +20,11 @@ export class RolesComponent implements OnInit {
   public manageSelectedRole = '';
   public listOfActions: any;
   public listOfActionPermissions: any;
-  public description: '';
+  public description: 'This is Admin role';
   public flagButton = '';
-  public roleName = '';
+  public roleName = 'Admin';
   public id: any;
-  constructor() {}
+  constructor(public modalCtrl: ModalController) {}
 
   ngOnInit() {}
   async getRefCompanyId() {}
@@ -41,8 +43,24 @@ export class RolesComponent implements OnInit {
     this.manageSelectedRole = roleName;
   }
   async addRoleActionPermission(selectedRole) {}
-  async addRole() {}
-  async showButton(name) {}
+  async addRole() {
+    const modal = await this.modalCtrl.create({
+      component: ManageRolesComponent,
+      componentProps: { role: '', type: 2 },
+    });
+    modal.onDidDismiss().then((d: any) => this.handleModalDismiss(d));
+    return await modal.present();
+  }
+  async showButton(name) {
+    if (name == 'roleName') {
+      this.flagButton = 'roleName';
+    } else if (name == 'description') {
+      this.flagButton = 'description';
+    }
+  }
   async updateRole() {}
   async validateControls() {}
+  async handleModalDismiss(d) {
+    console.log('d', d);
+  }
 }
