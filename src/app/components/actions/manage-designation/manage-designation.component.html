@@ -1,0 +1,124 @@
+<ion-split-pane [when]="true">
+  <ion-menu>
+    <ion-content class="hScroll bgDarkBlue">
+      <app-split-pane-item
+        [val]="items"
+        StingName="name"
+        (callFunction)="searchDesignation($event)"
+      ></app-split-pane-item>
+    </ion-content>
+  </ion-menu>
+
+  <ion-content main>
+    <h4 *ngIf="selectedDesignation == ''" class="tac top smallCaps">
+      Please select Designation from left menu to view Designation and its
+      Details
+    </h4>
+    <div>
+      <ion-row *ngIf="selectedDesignation != ''">
+        <ion-col class="p15p upperCase">{{ selectedDesignation }}</ion-col>
+      </ion-row>
+      <ion-row *ngIf="selectedDesignation != ''">
+        <ion-col size="10">
+          <ion-item>
+            <ion-label>Designation Name </ion-label>
+            <ion-input
+              (ionInput)="showButton('DesignationName')"
+              type="text"
+              name="DesignationName"
+              [(ngModel)]="DesignationName"
+            ></ion-input>
+          </ion-item>
+        </ion-col>
+        <ion-col size="2">
+          <ion-button
+            *ngIf="flagButton == 'DesignationName'"
+            (click)="updateDesignation()"
+          >
+            <ion-icon name="checkmark"></ion-icon>
+          </ion-button>
+        </ion-col>
+      </ion-row>
+      <ion-row *ngIf="selectedDesignation != ''">
+        <ion-col size="10">
+          <ion-item>
+            <ion-label>Sort Name </ion-label>
+            <ion-input
+              (ionInput)="showButton('SortName')"
+              type="text"
+              name="SortName"
+              [(ngModel)]="SortName"
+            ></ion-input>
+          </ion-item>
+        </ion-col>
+        <ion-col size="2">
+          <ion-button
+            *ngIf="flagButton == 'SortName'"
+            (click)="updateDesignation()"
+          >
+            <ion-icon name="checkmark"></ion-icon>
+          </ion-button>
+        </ion-col>
+      </ion-row>
+      <ion-row *ngIf="selectedDesignation != ''">
+        <ion-col size="10">
+          <ion-item>
+            <ion-label>Priority </ion-label>
+            <ion-input
+              (ionInput)="showButton('priority')"
+              type="text"
+              name="priority"
+              [(ngModel)]="priority"
+            ></ion-input>
+          </ion-item>
+        </ion-col>
+        <ion-col size="2">
+          <ion-button
+            *ngIf="flagButton == 'priority'"
+            (click)="updateDesignation()"
+          >
+            <ion-icon name="checkmark"></ion-icon>
+          </ion-button>
+        </ion-col>
+      </ion-row>
+      <ion-row *ngIf="selectedDesignation != ''">
+        <ion-col size="10">
+          <ion-item>
+            <ion-label>Parent</ion-label>
+
+            <!-- <ion-input (ionInput)="showButton('priority')" type="text" name="priority" [(ngModel)]="priority"></ion-input> -->
+            <ion-select
+              class="mWidth150"
+              (click)="showButton('parentsId')"
+              [(ngModel)]="parentsId"
+              (click)="showButton('parentsId')"
+              placeholder="Select Parent"
+              id="parentsId"
+              name="parentsId"
+            >
+              <ion-select-option value="0">None</ion-select-option>
+              <ion-select-option
+                *ngFor="let action of items"
+                [value]="action.id"
+                >{{ action.name }}</ion-select-option
+              >
+            </ion-select>
+          </ion-item>
+        </ion-col>
+        <ion-col size="2">
+          <ion-button
+            *ngIf="flagButton == 'parentsId'"
+            (click)="updateDesignation()"
+          >
+            <ion-icon name="checkmark"></ion-icon>
+          </ion-button>
+        </ion-col>
+      </ion-row>
+    </div>
+    <div ion-fixed>
+      <ion-fab bottom right class="t0 r0 p15p">
+        <ion-button (click)="NewDesignation()">Add</ion-button>
+      </ion-fab>
+    </div>
+  </ion-content>
+</ion-split-pane>

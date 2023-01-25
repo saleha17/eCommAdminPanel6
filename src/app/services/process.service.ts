@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { CompanyComponent } from '../components/actions/company/company.component';
 import { ManageActionsComponent } from '../components/actions/manage-actions/manage-actions.component';
+import { ManageDesignationComponent } from '../components/actions/manage-designation/manage-designation.component';
 import { RolesComponent } from '../components/actions/roles/roles.component';
 import { UserComponent } from '../components/actions/user/user.component';
 import { ProcessActionItem } from '../components/processActionItem';
@@ -36,8 +37,10 @@ export class ProcessService {
       return ManageActionsComponent;
     } else if (actionName == 'Users') {
       return UserComponent;
-    }else if (actionName == 'Company') {
+    } else if (actionName == 'Company') {
       return CompanyComponent;
+    } else if (actionName == 'Designation') {
+      return ManageDesignationComponent;
     }
   }
 }

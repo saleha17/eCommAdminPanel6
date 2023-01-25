@@ -14,6 +14,7 @@ import { CompanyComponent } from './actions/company/company.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { AccordionModule } from 'ngx-bootstrap/accordion';
 import { ManageCompanyComponent } from './actions/manage-company/manage-company.component';
+import { ManageDesignationComponent } from './actions/manage-designation/manage-designation.component';
 @NgModule({
   imports: [
     CommonModule,
@@ -33,16 +34,8 @@ import { ManageCompanyComponent } from './actions/manage-company/manage-company.
     IonicSelectSearchableComponent,
     CompanyComponent,
     ManageCompanyComponent,
+    ManageDesignationComponent,
   ],
-  entryComponents: [
-    RolesComponent,
-    SplitPaneItemComponent,
-    ManageRolesComponent,
-    ManageActionsComponent,
-    UserComponent,
-    ManageUserComponent,
-    IonicSelectSearchableComponent,
-    CompanyComponent,
-  ],
+  entryComponents: [SplitPaneItemComponent, IonicSelectSearchableComponent],
 })
 export class ComponentsModule {}
