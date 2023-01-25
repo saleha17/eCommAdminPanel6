@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { ModalController } from '@ionic/angular';
+import { ModalController, NavParams } from '@ionic/angular';
 
 @Component({
   selector: 'app-manage-product-parameter-master',
@@ -16,9 +16,17 @@ export class ManageProductParameterMasterComponent implements OnInit {
   public id: any;
   public refCompanyId: any;
 
-  constructor(private modalCtrl: ModalController) {}
+  constructor(
+    private modalCtrl: ModalController,
+    private navParams: NavParams
+  ) {}
 
-  ngOnInit() {}
+  ngOnInit() {
+    this.isModal = this.navParams.get('flagModal');
+    this.productParameterId = this.navParams.get('id');
+    this.ProductParamName = this.navParams.get('ProductParamName');
+    this.item = this.navParams.get('item');
+  }
   closeModal() {
     this.modalCtrl.dismiss();
   }
