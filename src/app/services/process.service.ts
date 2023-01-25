@@ -3,6 +3,7 @@ import { CompanyComponent } from '../components/actions/company/company.componen
 import { ManageActionsComponent } from '../components/actions/manage-actions/manage-actions.component';
 import { ManageDesignationComponent } from '../components/actions/manage-designation/manage-designation.component';
 import { ProductParameterMasterComponent } from '../components/actions/product-parameter-master/product-parameter-master.component';
+import { ProductsComponent } from '../components/actions/products/products.component';
 import { RolesComponent } from '../components/actions/roles/roles.component';
 import { UserComponent } from '../components/actions/user/user.component';
 import { ProcessActionItem } from '../components/processActionItem';
@@ -42,8 +43,10 @@ export class ProcessService {
       return CompanyComponent;
     } else if (actionName == 'Designation') {
       return ManageDesignationComponent;
-    } else if (actionName == "Product Parameter Master") {
+    } else if (actionName == 'Product Parameter Master') {
       return ProductParameterMasterComponent;
-    } 
+    } else if (actionName == 'Products') {
+      return ProductsComponent;
+    }
   }
 }

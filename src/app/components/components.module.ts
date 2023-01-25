@@ -17,6 +17,8 @@ import { ManageCompanyComponent } from './actions/manage-company/manage-company.
 import { ManageDesignationComponent } from './actions/manage-designation/manage-designation.component';
 import { ProductParameterMasterComponent } from './actions/product-parameter-master/product-parameter-master.component';
 import { ManageProductParameterMasterComponent } from './actions/manage-product-parameter-master/manage-product-parameter-master.component';
+import { ProductsComponent } from './actions/products/products.component';
+
 @NgModule({
   imports: [
     CommonModule,
@@ -39,6 +41,7 @@ import { ManageProductParameterMasterComponent } from './actions/manage-product-
     ManageDesignationComponent,
     ProductParameterMasterComponent,
     ManageProductParameterMasterComponent,
+    ProductsComponent,
   ],
   entryComponents: [SplitPaneItemComponent, IonicSelectSearchableComponent],
 })

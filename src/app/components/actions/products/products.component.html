@@ -1,0 +1,407 @@
+<ion-split-pane [when]="true">
+  <ion-menu>
+    <!-- <ion-searchbar [(ngModel)]="manageSelectedProduct" placeholder="Search Stone Parameter Name" showCancelButton (ionInput)="filterItems($event)" (keyup.enter)="searchStoneMaster()" (keydown)="keyDown($event)"></ion-searchbar>
+  <ion-content class="hScroll">
+    <ion-list>
+      <ion-item *ngFor="let item of items" [ngClass]="item.masterName == manageSelectedProduct ? 'activeItem' : ''" (click)="getStoneMasterDetail($event, item.masterName)"> {{ item.masterName }} </ion-item>
+    </ion-list>
+  </ion-content> -->
+    <ion-nav swipeBackEnabled="false" main>
+      <ion-content class="hScroll bgDarkBlue">
+        <app-split-pane-item
+          [val]="items"
+          StingName="name"
+          (callFunction)="getProductDetail($event.name)"
+          (callIonInput)="filterItems($event)"
+        ></app-split-pane-item>
+      </ion-content>
+    </ion-nav>
+  </ion-menu>
+  <ion-content main>
+    <h4 *ngIf="manageSelectedProduct == ''" class="tac top smallCaps">
+      Please select Product from left menu to view Values.
+    </h4>
+    <ion-row *ngIf="manageSelectedProduct != ''">
+      <ion-col class="p15p upperCase">{{ manageSelectedProduct }}</ion-col>
+    </ion-row>
+    <br />
+    <ion-row *ngIf="manageSelectedProduct != ''">
+      <ion-col size="9">
+        <ion-item>
+          <ion-label>Title</ion-label>
+          <ion-input
+            (ionInput)="showButton('name')"
+            type="text"
+            name="name"
+            [(ngModel)]="name"
+          ></ion-input>
+        </ion-item>
+      </ion-col>
+      <ion-col size="3">
+        <ion-button *ngIf="flgBtn == 'name'" (click)="updateProduct()">
+          <ion-icon name="checkmark"></ion-icon>
+        </ion-button>
+      </ion-col>
+    </ion-row>
+    <ion-row *ngIf="manageSelectedProduct != ''">
+      <ion-col size="9">
+        <ion-item>
+          <ion-label>SKU</ion-label>
+          <ion-input
+            (ionInput)="showButton('productSku')"
+            type="text"
+            name="productSku"
+            [(ngModel)]="productSku"
+          ></ion-input>
+        </ion-item>
+      </ion-col>
+      <ion-col size="3">
+        <ion-button *ngIf="flgBtn == 'productSku'" (click)="updateProduct()">
+          <ion-icon name="checkmark"></ion-icon>
+        </ion-button>
+      </ion-col>
+    </ion-row>
+    <ion-row *ngIf="manageSelectedProduct != ''">
+      <ion-col size="9">
+        <ion-item>
+          <ion-label>Description</ion-label>
+          <ion-textarea
+            placeholder="Enter a description"
+            (ionInput)="showButton('description')"
+            name="description"
+            [(ngModel)]="description"
+            class="descHeight"
+          ></ion-textarea>
+        </ion-item>
+      </ion-col>
+      <ion-col size="3">
+        <ion-button *ngIf="flgBtn == 'description'" (click)="updateProduct()">
+          <ion-icon name="checkmark"></ion-icon>
+        </ion-button>
+      </ion-col>
+    </ion-row>
+    <!-- ============================================================ -->
+
+    <ion-row *ngIf="listOfBanners.length != 0 && manageSelectedProduct != ''">
+      <ion-slides
+        #slides
+        pager="true"
+        [options]="slideOpts"
+        *ngIf="selectedPage != ''"
+      >
+        <ion-button
+          (click)="prev()"
+          class="backBtn bgTransparent boxShadowRemove darkRed"
+        >
+          <ion-icon name="ios-arrow-back"></ion-icon>
+        </ion-button>
+        <ion-slide *ngFor="let banner of listOfBanners">
+          <ion-card>
+            <img class="bannerImageSize" src="{{ banner.image }}" />
+          </ion-card>
+        </ion-slide>
+        <ion-button
+          (click)="next()"
+          class="nextBtn bgTransparent boxShadowRemove darkRed"
+        >
+          <ion-icon name="ios-arrow-forward"> </ion-icon>
+        </ion-button>
+      </ion-slides>
+    </ion-row>
+
+    <!-- ============================================================ -->
+    <br /><br />
+    <accordion
+      [showArrows]="true"
+      class="bgRed"
+      [closeOthers]="false"
+      *ngIf="manageSelectedProduct != ''"
+    >
+      <!-- *ngIf="listOfBanners.length != 0" -->
+      <accordion-group heading="Images">
+        <ion-grid>
+          <ion-row *ngIf="manageSelectedProduct != ''">
+            <ion-col>
+              <ion-searchbar
+                [(ngModel)]="productImageSearch"
+                placeholder="Search"
+                showCancelButton
+                (ionInput)="filterProductImage($event)"
+                (keydown)="keyDownVariant($event)"
+              ></ion-searchbar>
+            </ion-col>
+            <ion-button (click)="openModal(0, 'addImage')">
+              <ion-icon name="add"></ion-icon>
+            </ion-button>
+          </ion-row>
+        </ion-grid>
+        <ngx-datatable
+          sortType="multi"
+          [headerHeight]="50"
+          [footerHeight]="60"
+          [rowHeight]="50"
+          [rows]="listOfBanners"
+          columnMode="force"
+          [scrollbarV]="true"
+          class="ngx-datatable.scroll-vertical"
+        >
+          <ngx-datatable-column prop="srNo" name="Sr. No">
+            <ng-template
+              let-row="row"
+              let-rowIndex="rowIndex"
+              let-value="value"
+              ngx-datatable-cell-template
+            >
+              <span> {{ rowIndex + 1 }} </span>
+            </ng-template>
+          </ngx-datatable-column>
+
+          <ngx-datatable-column prop="image" name="Image">
+            <ng-template
+              let-row="row"
+              let-value="value"
+              ngx-datatable-cell-template
+            >
+              <ion-img class="imgSize" [src]="value"></ion-img>
+            </ng-template>
+          </ngx-datatable-column>
+
+          <ngx-datatable-column prop="image" name="Link">
+            <ng-template
+              let-row="row"
+              let-value="value"
+              ngx-datatable-cell-template
+            >
+              <span> {{ value }} </span>
+            </ng-template>
+          </ngx-datatable-column>
+
+          <ngx-datatable-column name="Delete">
+            <ng-template
+              let-row="row"
+              let-value="value"
+              ngx-datatable-cell-template
+            >
+              <ion-button
+                size="small"
+                class="bgTransparent boxShadowRemove darkRed"
+                (click)="deleteProductImage(row)"
+              >
+                <ion-icon name="close"></ion-icon>
+              </ion-button>
+            </ng-template>
+          </ngx-datatable-column>
+        </ngx-datatable>
+      </accordion-group>
+      <accordion-group heading="Parameters">
+        <ion-grid>
+          <ion-row *ngIf="manageSelectedProduct != ''">
+            <ion-col>
+              <ion-searchbar
+                [(ngModel)]="valueSearch"
+                placeholder="Search"
+                showCancelButton
+                (ionInput)="filterValues($event)"
+                (keydown)="keyDownValues($event)"
+              ></ion-searchbar>
+            </ion-col>
+            <!-- <ion-col col-4 class="tar"> -->
+            <ion-button (click)="openModal(0, 'addValue')">
+              <ion-icon name="add"></ion-icon>
+            </ion-button>
+            <!-- </ion-col> -->
+          </ion-row>
+        </ion-grid>
+        <ngx-datatable
+          sortType="multi"
+          [headerHeight]="50"
+          [footerHeight]="60"
+          [rowHeight]="35"
+          [rows]="listOfValue"
+          columnMode="force"
+          [scrollbarV]="true"
+          class="ngx-datatable.scroll-vertical"
+        >
+          <ngx-datatable-column prop="srNo" name="Sr. No">
+            <ng-template
+              let-row="row"
+              let-rowIndex="rowIndex"
+              let-value="value"
+              ngx-datatable-cell-template
+            >
+              <span> {{ rowIndex + 1 }} </span>
+            </ng-template>
+          </ngx-datatable-column>
+          <ngx-datatable-column prop="paramName" name="Name" [flexGrow]="3">
+            <ng-template
+              let-row="row"
+              let-value="value"
+              ngx-datatable-cell-template
+            >
+              <span (click)="openModal(row, 'updateValue')">
+                {{ value }}
+              </span></ng-template
+            >
+          </ngx-datatable-column>
+          <ngx-datatable-column prop="paramValue" name="Value" [flexGrow]="3">
+            <ng-template
+              let-row="row"
+              let-value="value"
+              ngx-datatable-cell-template
+            >
+              <span (click)="openModal(row, 'updateValue')">
+                {{ value }}
+              </span></ng-template
+            >
+          </ngx-datatable-column>
+          <ngx-datatable-column name="Delete" [flexGrow]="1">
+            <ng-template
+              let-row="row"
+              let-value="value"
+              ngx-datatable-cell-template
+            >
+              <ion-button
+                size="small"
+                class="bgTransparent boxShadowRemove darkRed"
+                (click)="deleteProductParameterForProduct(row)"
+              >
+                <ion-icon name="close"></ion-icon>
+              </ion-button>
+            </ng-template>
+          </ngx-datatable-column>
+        </ngx-datatable>
+      </accordion-group>
+      <accordion-group heading="Variants">
+        <ion-grid>
+          <ion-row *ngIf="manageSelectedProduct != ''">
+            <ion-col>
+              <ion-searchbar
+                [(ngModel)]="variantSearch"
+                placeholder="Search"
+                showCancelButton
+                (ionInput)="filterVariant($event)"
+                (keydown)="keyDownVariant($event)"
+              ></ion-searchbar>
+            </ion-col>
+            <ion-button (click)="openModal(0, 'addVariant')">
+              <ion-icon name="add"></ion-icon>
+            </ion-button>
+          </ion-row>
+        </ion-grid>
+        <ngx-datatable
+          sortType="multi"
+          [headerHeight]="50"
+          [footerHeight]="60"
+          [rowHeight]="35"
+          [rows]="listOfVariants"
+          columnMode="force"
+          [scrollbarV]="true"
+          class="ngx-datatable.scroll-vertical"
+        >
+          <ngx-datatable-column prop="srNo" name="Sr. No">
+            <ng-template
+              let-row="row"
+              let-rowIndex="rowIndex"
+              let-value="value"
+              ngx-datatable-cell-template
+            >
+              <span> {{ rowIndex + 1 }} </span>
+            </ng-template>
+          </ngx-datatable-column>
+          <ngx-datatable-column prop="title" name="Name">
+            <ng-template
+              let-row="row"
+              let-value="value"
+              ngx-datatable-cell-template
+            >
+              <span (click)="openModal(row, 'updateVariant')">
+                {{ value }}
+              </span></ng-template
+            >
+          </ngx-datatable-column>
+          <ngx-datatable-column name="Delete">
+            <ng-template
+              let-row="row"
+              let-value="value"
+              ngx-datatable-cell-template
+            >
+              <ion-button
+                size="small"
+                class="bgTransparent boxShadowRemove darkRed"
+                (click)="deleteProductVariant(row)"
+              >
+                <ion-icon name="close"></ion-icon>
+              </ion-button>
+            </ng-template>
+          </ngx-datatable-column>
+        </ngx-datatable>
+      </accordion-group>
+      <accordion-group heading="Tags">
+        <ion-grid>
+          <ion-row *ngIf="manageSelectedProduct != ''">
+            <ion-col>
+              <ion-searchbar
+                placeholder="Search"
+                showCancelButton
+                (ionInput)="filterTag($event)"
+              ></ion-searchbar>
+            </ion-col>
+            <ion-button (click)="openModal(0, 'addTags')">
+              <ion-icon name="add"></ion-icon>
+            </ion-button>
+          </ion-row>
+        </ion-grid>
+        <ngx-datatable
+          sortType="multi"
+          [headerHeight]="50"
+          [footerHeight]="60"
+          [rowHeight]="35"
+          [rows]="listOfTags"
+          columnMode="force"
+          [scrollbarV]="true"
+          class="ngx-datatable.scroll-vertical"
+        >
+          <ngx-datatable-column prop="srNo" name="Sr. No">
+            <ng-template
+              let-row="row"
+              let-rowIndex="rowIndex"
+              let-value="value"
+              ngx-datatable-cell-template
+            >
+              <span> {{ rowIndex + 1 }} </span>
+            </ng-template>
+          </ngx-datatable-column>
+          <ngx-datatable-column prop="name" name="Name">
+            <ng-template
+              let-row="row"
+              let-value="value"
+              ngx-datatable-cell-template
+            >
+              <span> {{ value }} </span></ng-template
+            >
+          </ngx-datatable-column>
+          <ngx-datatable-column name="Delete">
+            <ng-template
+              let-row="row"
+              let-value="value"
+              ngx-datatable-cell-template
+            >
+              <ion-button
+                size="small"
+                class="bgTransparent boxShadowRemove darkRed"
+                (click)="deleteProductTag(row)"
+              >
+                <ion-icon name="close"></ion-icon>
+              </ion-button>
+            </ng-template>
+          </ngx-datatable-column>
+        </ngx-datatable>
+      </accordion-group>
+    </accordion>
+    <div ion-fixed>
+      <ion-fab bottom right class="t0 r0 p15p">
+        <ion-button (click)="openModal(0, 'addNewProduct')">Add</ion-button>
+      </ion-fab>
+    </div>
+  </ion-content>
+</ion-split-pane>
