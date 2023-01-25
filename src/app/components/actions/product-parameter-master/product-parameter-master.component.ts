@@ -1,4 +1,6 @@
 import { Component, Input, OnInit } from '@angular/core';
+import { ModalController } from '@ionic/angular';
+import { ManageProductParameterMasterComponent } from '../manage-product-parameter-master/manage-product-parameter-master.component';
 
 @Component({
   selector: 'app-product-parameter-master',
@@ -23,22 +25,34 @@ export class ProductParameterMasterComponent implements OnInit {
   public name = '';
   public flgBtn = '';
 
-  constructor() {}
+  constructor(public modalCtrl: ModalController) {}
 
   ngOnInit() {}
   setItems() {}
   async getAllProductParameter() {}
-  getProductMasterDetail(name) {}
-  async searchProductMaster(name) {
+  getProductMasterDetail(name) {
     this.manageSelectedMaster = name;
     this.selectedMaster = name;
   }
+  async searchProductMaster(name) {}
   setValues() {}
   async filterValues(ev: any) {}
   keyDownValues(event: KeyboardEvent) {}
   async updateProductParamName() {}
   async deleterParamValue(id) {}
-  async openModal(item, flagModal) {}
+  async openModal(item, flagModal) {
+    let modalPage = await this.modalCtrl.create({
+      component: ManageProductParameterMasterComponent,
+      componentProps: {
+        id: this.id,
+        item: item,
+        ProductParamName: this.selectedMaster,
+        flagModal: flagModal,
+      },
+    });
+    modalPage.onDidDismiss().then((d: any) => this.handleModalDismiss(d));
+    await modalPage.present();
+  }
   async handleModalDismiss(d) {}
   async showButton(name) {
     if (name == 'productParamName') {

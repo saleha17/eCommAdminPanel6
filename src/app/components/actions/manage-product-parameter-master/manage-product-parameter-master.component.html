@@ -1,0 +1,66 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title
+      class="smallCaps"
+      *ngIf="isModal == 'updateValue' || isModal == 'addValue'"
+      >Manage {{ ProductParamName }}</ion-title
+    >
+    <ion-title class="smallCaps" *ngIf="isModal == 'addNewProductParam'"
+      >Add</ion-title
+    >
+    <ion-buttons slot="end">
+      <ion-button ion-button class="smallCaps" (click)="closeModal()">
+        Close
+      </ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content padding *ngIf="isModal == 'updateValue' || isModal == 'addValue'">
+  <ion-row>
+    <ion-col>
+      <ion-item>
+        <ion-label>value</ion-label>
+        <ion-input type="text" name="code" [(ngModel)]="value"></ion-input>
+      </ion-item>
+    </ion-col>
+  </ion-row>
+  <ion-row>
+    <ion-col class="tac">
+      <ion-button
+        *ngIf="isModal == 'addValue'"
+        ion-button
+        (click)="saveValue()"
+      >
+        Save
+      </ion-button>
+      <ion-button
+        *ngIf="isModal == 'updateValue'"
+        ion-button
+        (click)="updateValue()"
+      >
+        Update
+      </ion-button>
+    </ion-col>
+  </ion-row>
+</ion-content>
+
+<ion-content padding *ngIf="isModal == 'addNewProductParam'">
+  <ion-row>
+    <ion-col>
+      <ion-item>
+        <ion-label>Master Parameter Name</ion-label>
+        <ion-input
+          type="text"
+          name="masterParamName"
+          [(ngModel)]="name"
+        ></ion-input>
+      </ion-item>
+    </ion-col>
+  </ion-row>
+  <ion-row>
+    <ion-col class="tac">
+      <ion-button ion-button (click)="addNewParam()"> Add </ion-button>
+    </ion-col>
+  </ion-row>
+</ion-content>

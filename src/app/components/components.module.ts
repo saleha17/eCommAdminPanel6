@@ -16,6 +16,7 @@ import { AccordionModule } from 'ngx-bootstrap/accordion';
 import { ManageCompanyComponent } from './actions/manage-company/manage-company.component';
 import { ManageDesignationComponent } from './actions/manage-designation/manage-designation.component';
 import { ProductParameterMasterComponent } from './actions/product-parameter-master/product-parameter-master.component';
+import { ManageProductParameterMasterComponent } from './actions/manage-product-parameter-master/manage-product-parameter-master.component';
 @NgModule({
   imports: [
     CommonModule,
@@ -37,6 +38,7 @@ import { ProductParameterMasterComponent } from './actions/product-parameter-mas
     ManageCompanyComponent,
     ManageDesignationComponent,
     ProductParameterMasterComponent,
+    ManageProductParameterMasterComponent,
   ],
   entryComponents: [SplitPaneItemComponent, IonicSelectSearchableComponent],
 })
