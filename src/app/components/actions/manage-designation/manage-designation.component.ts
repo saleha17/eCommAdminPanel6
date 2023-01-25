@@ -51,6 +51,7 @@ export class ManageDesignationComponent implements OnInit {
     } else {
       DesignationName = this.manageSelectedDesignation;
     }
+    this.selectedDesignation = DesignationName.name;
 
     this.updateButton = false;
     this.flagButton = null;

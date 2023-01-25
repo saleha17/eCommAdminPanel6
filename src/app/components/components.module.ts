@@ -15,6 +15,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { AccordionModule } from 'ngx-bootstrap/accordion';
 import { ManageCompanyComponent } from './actions/manage-company/manage-company.component';
 import { ManageDesignationComponent } from './actions/manage-designation/manage-designation.component';
+import { ProductParameterMasterComponent } from './actions/product-parameter-master/product-parameter-master.component';
 @NgModule({
   imports: [
     CommonModule,
@@ -35,6 +36,7 @@ import { ManageDesignationComponent } from './actions/manage-designation/manage-
     CompanyComponent,
     ManageCompanyComponent,
     ManageDesignationComponent,
+    ProductParameterMasterComponent,
   ],
   entryComponents: [SplitPaneItemComponent, IonicSelectSearchableComponent],
 })

@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { CompanyComponent } from '../components/actions/company/company.component';
 import { ManageActionsComponent } from '../components/actions/manage-actions/manage-actions.component';
 import { ManageDesignationComponent } from '../components/actions/manage-designation/manage-designation.component';
+import { ProductParameterMasterComponent } from '../components/actions/product-parameter-master/product-parameter-master.component';
 import { RolesComponent } from '../components/actions/roles/roles.component';
 import { UserComponent } from '../components/actions/user/user.component';
 import { ProcessActionItem } from '../components/processActionItem';
@@ -41,6 +42,8 @@ export class ProcessService {
       return CompanyComponent;
     } else if (actionName == 'Designation') {
       return ManageDesignationComponent;
-    }
+    } else if (actionName == "Product Parameter Master") {
+      return ProductParameterMasterComponent;
+    } 
   }
 }

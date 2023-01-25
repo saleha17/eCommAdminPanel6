@@ -1,0 +1,124 @@
+<ion-split-pane [when]="true">
+  <ion-menu>
+    <!-- <ion-searchbar [(ngModel)]="manageSelectedMaster" placeholder="Search Stone Parameter Name" showCancelButton (ionInput)="filterItems($event)" (keyup.enter)="searchStoneMaster()" (keydown)="keyDown($event)"></ion-searchbar>
+  <ion-content class="hScroll">
+    <ion-list>
+      <ion-item *ngFor="let item of items" [ngClass]="item.masterName == manageSelectedMaster ? 'activeItem' : ''" (click)="getStoneMasterDetail($event, item.masterName)"> {{ item.masterName }} </ion-item>
+    </ion-list>
+  </ion-content> -->
+    <ion-nav swipeBackEnabled="false" main>
+      <ion-content class="hScroll bgDarkBlue">
+        <app-split-pane-item
+          [val]="items"
+          StingName="name"
+          (callFunction)="getProductMasterDetail($event.name)"
+        ></app-split-pane-item>
+      </ion-content>
+    </ion-nav>
+  </ion-menu>
+  <ion-content main>
+    <h4 *ngIf="manageSelectedMaster == ''" class="tac top smallCaps">
+      Please select Product Parameter from left menu to view Values.
+    </h4>
+    <ion-row *ngIf="manageSelectedMaster != ''">
+      <ion-col class="p15p upperCase">{{ manageSelectedMaster }}</ion-col>
+    </ion-row>
+    <br />
+    <ion-row *ngIf="manageSelectedMaster != ''">
+      <ion-col>
+        <ion-item>
+          <ion-label>Parameter Name </ion-label>
+          <ion-input
+            (ionInput)="showButton('productParamName')"
+            type="text"
+            name="name"
+            [(ngModel)]="name"
+          ></ion-input>
+        </ion-item>
+      </ion-col>
+      <ion-col>
+        <ion-button
+          *ngIf="flgBtn == 'productParamName'"
+          (click)="updateProductParamName()"
+        >
+          <ion-icon name="checkmark"></ion-icon>
+        </ion-button>
+      </ion-col>
+    </ion-row>
+    <br /><br />
+    <ion-grid>
+      <ion-row *ngIf="manageSelectedMaster != ''">
+        <ion-col>
+          <ion-searchbar
+            [(ngModel)]="valueSearch"
+            placeholder="Search"
+            showCancelButton
+            (ionInput)="filterValues($event)"
+            (keydown)="keyDownValues($event)"
+          ></ion-searchbar>
+        </ion-col>
+        <!-- <ion-col col-4 class="tar"> -->
+        <ion-button (click)="openModal(0, 'addValue')">
+          <ion-icon name="add"></ion-icon>
+        </ion-button>
+        <!-- </ion-col> -->
+      </ion-row>
+    </ion-grid>
+    <ion-row *ngIf="manageSelectedMaster != ''">
+      <ngx-datatable
+        [headerHeight]="50"
+        [footerHeight]="60"
+        [rowHeight]="35"
+        [rows]="listOfValue"
+        columnMode="force"
+        [scrollbarV]="true"
+        class="ngx-datatable.scroll-vertical"
+      >
+        <ngx-datatable-column prop="srNo" name="Sr. No">
+          <ng-template
+            let-row="row"
+            let-rowIndex="rowIndex"
+            let-value="value"
+            ngx-datatable-cell-template
+          >
+            <span> {{ rowIndex + 1 }} </span>
+          </ng-template>
+        </ngx-datatable-column>
+        <ngx-datatable-column prop="value" name="values" [flexGrow]="3">
+          <ng-template
+            let-row="row"
+            let-value="value"
+            ngx-datatable-cell-template
+          >
+            <span (click)="openModal(row, 'updateValue')">
+              {{ value }}
+            </span></ng-template
+          >
+        </ngx-datatable-column>
+        <ngx-datatable-column name="Delete" [flexGrow]="1">
+          <ng-template
+            let-row="row"
+            let-val
+            ue="value"
+            ngx-datatable-cell-template
+          >
+            <ion-button
+              size="small"
+              class="bgTransparent boxShadowRemove darkRed"
+              (click)="deleterParamValue(row.id)"
+            >
+              <ion-icon name="close"></ion-icon>
+            </ion-button>
+          </ng-template>
+        </ngx-datatable-column>
+      </ngx-datatable>
+    </ion-row>
+    <div ion-fixed>
+      <ion-fab bottom right class="t0 r0 p15p">
+        <ion-button (click)="openModal(0, 'addNewProductParam')"
+          >Add</ion-button
+        >
+      </ion-fab>
+    </div>
+  </ion-content>
+</ion-split-pane>
