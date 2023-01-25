@@ -30,7 +30,7 @@
       </ion-row>
     </ion-list>
     <ion-row *ngIf="manageSelectedCompany != ''">
-      <ion-col>
+      <ion-col size="10">
         <ion-item>
           <ion-label>Company Name </ion-label>
           <ion-input
@@ -41,14 +41,14 @@
           ></ion-input>
         </ion-item>
       </ion-col>
-      <ion-col>
+      <ion-col size="2">
         <ion-button *ngIf="flgBtn == 'name'" (click)="updateCompany()">
           <ion-icon name="checkmark"></ion-icon>
         </ion-button>
       </ion-col>
     </ion-row>
     <ion-row *ngIf="manageSelectedCompany != ''">
-      <ion-col col-8>
+      <ion-col size="10">
         <ion-item>
           <ion-label>Contact Name </ion-label>
           <ion-input
@@ -59,14 +59,14 @@
           ></ion-input>
         </ion-item>
       </ion-col>
-      <ion-col col-4>
+      <ion-col size="2">
         <ion-button *ngIf="flgBtn == 'contactName'" (click)="updateCompany()">
           <ion-icon name="checkmark"></ion-icon>
         </ion-button>
       </ion-col>
     </ion-row>
     <ion-row *ngIf="manageSelectedCompany != ''">
-      <ion-col col-8>
+      <ion-col size="10">
         <ion-item>
           <ion-label>Contact No </ion-label>
           <ion-input
@@ -77,14 +77,14 @@
           ></ion-input>
         </ion-item>
       </ion-col>
-      <ion-col col-4>
+      <ion-col size="2">
         <ion-button *ngIf="flgBtn == 'contactNumber'" (click)="updateCompany()">
           <ion-icon name="checkmark"></ion-icon>
         </ion-button>
       </ion-col>
     </ion-row>
     <ion-row *ngIf="manageSelectedCompany != ''">
-      <ion-col col-8>
+      <ion-col size="10">
         <ion-item>
           <ion-label>Attendance Server</ion-label>
           <ion-input
@@ -95,7 +95,7 @@
           ></ion-input>
         </ion-item>
       </ion-col>
-      <ion-col col-4>
+      <ion-col size="2">
         <ion-button
           *ngIf="flgBtn == 'handleCompanyWebHook'"
           (click)="updateCompany()"
@@ -105,7 +105,7 @@
       </ion-col>
     </ion-row>
     <ion-row *ngIf="manageSelectedCompany != ''">
-      <ion-col col-8>
+      <ion-col size="10">
         <ion-item>
           <ion-label>HR-LoginLogOut</ion-label>
           <ion-input
@@ -116,7 +116,7 @@
           ></ion-input>
         </ion-item>
       </ion-col>
-      <ion-col col-4>
+      <ion-col size="2">
         <ion-button
           *ngIf="flgBtn == 'webHookInOutUrl'"
           (click)="updateCompany()"
@@ -126,7 +126,7 @@
       </ion-col>
     </ion-row>
     <ion-row *ngIf="manageSelectedCompany != ''">
-      <ion-col col-8>
+      <ion-col size="10">
         <ion-item>
           <ion-label>Subdomain</ion-label>
           <ion-input
@@ -137,14 +137,14 @@
           ></ion-input>
         </ion-item>
       </ion-col>
-      <ion-col col-4>
+      <ion-col size="2">
         <ion-button *ngIf="flgBtn == 'subdomain'" (click)="updateCompany()">
           <ion-icon name="checkmark"></ion-icon>
         </ion-button>
       </ion-col>
     </ion-row>
     <ion-row *ngIf="manageSelectedCompany != ''">
-      <ion-col col-8>
+      <ion-col size="10">
         <ion-item>
           <ion-label>Product Type</ion-label>
           <ion-input
@@ -155,14 +155,14 @@
           ></ion-input>
         </ion-item>
       </ion-col>
-      <ion-col col-4>
+      <ion-col size="2">
         <ion-button *ngIf="flgBtn == 'productType'" (click)="updateCompany()">
           <ion-icon name="checkmark"></ion-icon>
         </ion-button>
       </ion-col>
     </ion-row>
     <ion-row *ngIf="manageSelectedCompany != ''">
-      <ion-col col-8>
+      <ion-col size="10">
         <ion-item>
           <ion-label>Company Logo</ion-label>
           <ion-input
@@ -173,17 +173,17 @@
           ></ion-input>
         </ion-item>
       </ion-col>
-      <ion-col col-4>
+      <ion-col size="2">
         <ion-button *ngIf="flgBtn == 'companyLogo'" (click)="updateCompany()">
           <ion-icon name="checkmark"></ion-icon>
         </ion-button>
       </ion-col>
     </ion-row>
     <div *ngIf="manageSelectedCompany != ''" ion-fixed class="pl10">
-      <accordion [showArrows]="true" class="" [closeOthers]="false">
+      <accordion class="" [closeOthers]="false">
         <accordion-group heading="Attendance config">
           <ion-row *ngIf="selectedDesignation != ''">
-            <ion-col col-8>
+            <ion-col size="8">
               <ion-item>
                 <ion-label>Longitude </ion-label>
                 <ion-input
@@ -194,14 +194,14 @@
                 ></ion-input>
               </ion-item>
             </ion-col>
-            <ion-col col-4>
+            <ion-col size="2">
               <ion-button *ngIf="flgBtn == 'longitude'" (click)="updateArea()">
                 <ion-icon name="checkmark"></ion-icon>
               </ion-button>
             </ion-col>
           </ion-row>
           <ion-row *ngIf="selectedDesignation != ''">
-            <ion-col col-8>
+            <ion-col size="10">
               <ion-item>
                 <ion-label>Latitude </ion-label>
                 <ion-input
@@ -212,14 +212,14 @@
                 ></ion-input>
               </ion-item>
             </ion-col>
-            <ion-col col-4>
+            <ion-col size="2">
               <ion-button *ngIf="flgBtn == 'latitude'" (click)="updateArea()">
                 <ion-icon name="checkmark"></ion-icon>
               </ion-button>
             </ion-col>
           </ion-row>
           <ion-row *ngIf="selectedDesignation != ''">
-            <ion-col col-8>
+            <ion-col size="10">
               <ion-item>
                 <ion-label>Distance </ion-label>
                 <ion-input
@@ -230,7 +230,7 @@
                 ></ion-input>
               </ion-item>
             </ion-col>
-            <ion-col col-4>
+            <ion-col size="2">
               <ion-button *ngIf="flgBtn == 'distance'" (click)="updateArea()">
                 <ion-icon name="checkmark"></ion-icon>
               </ion-button>
@@ -306,7 +306,7 @@
                 </ngx-datatable-column> -->
           </ngx-datatable>
         </accordion-group>
-        <accordion-group heading="Action Permission" [isOpened]="isOpen">
+        <accordion-group heading="Action Permission" [isOpen]="isOpen">
           <ion-col class="width100">
             <ngx-datatable
               [headerHeight]="50"

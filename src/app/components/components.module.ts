@@ -11,9 +11,18 @@ import { UserComponent } from './actions/user/user.component';
 import { ManageUserComponent } from './actions/manage-user/manage-user.component';
 import { IonicSelectSearchableComponent } from './ionic-select-searchable/ionic-select-searchable.component';
 import { CompanyComponent } from './actions/company/company.component';
-
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { AccordionModule } from 'ngx-bootstrap/accordion';
+import { ManageCompanyComponent } from './actions/manage-company/manage-company.component';
 @NgModule({
-  imports: [CommonModule, FormsModule, IonicModule, NgxDatatableModule],
+  imports: [
+    CommonModule,
+    FormsModule,
+    IonicModule,
+    NgxDatatableModule,
+    AccordionModule.forRoot(),
+    BrowserAnimationsModule,
+  ],
   declarations: [
     RolesComponent,
     SplitPaneItemComponent,
@@ -23,6 +32,7 @@ import { CompanyComponent } from './actions/company/company.component';
     ManageUserComponent,
     IonicSelectSearchableComponent,
     CompanyComponent,
+    ManageCompanyComponent,
   ],
   entryComponents: [
     RolesComponent,

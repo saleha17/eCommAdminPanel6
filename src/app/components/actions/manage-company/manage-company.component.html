@@ -1,0 +1,121 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>Manage Company</ion-title>
+    <ion-buttons slot="end">
+      <ion-button ion-button (click)="closeModal()"> Close </ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content padding>
+  <ion-row>
+    <ion-col>
+      <ion-item>
+        <ion-label>Company Name</ion-label>
+        <ion-input
+          type="text"
+          name="name"
+          [(ngModel)]="name"
+          required
+        ></ion-input>
+      </ion-item>
+    </ion-col>
+  </ion-row>
+  <ion-row>
+    <ion-col>
+      <ion-item>
+        <ion-label>Contact Name</ion-label>
+        <ion-input
+          type="text"
+          name="contactName"
+          [(ngModel)]="contactName"
+          required
+        ></ion-input>
+      </ion-item>
+    </ion-col>
+  </ion-row>
+  <ion-row>
+    <ion-col>
+      <ion-item>
+        <ion-label>Contact Number</ion-label>
+        <ion-input
+          type="text"
+          name="contactNumber"
+          [(ngModel)]="contactNumber"
+          pattern="[0-9]{12}"
+          required
+        ></ion-input>
+      </ion-item>
+    </ion-col>
+  </ion-row>
+  <ion-row>
+    <ion-col>
+      <ion-item>
+        <ion-label>Attendance Server</ion-label>
+        <ion-input
+          type="text"
+          name="handleCompanyWebHook"
+          [(ngModel)]="handleCompanyWebHook"
+          required
+        ></ion-input>
+      </ion-item>
+    </ion-col>
+  </ion-row>
+  <ion-row>
+    <ion-col>
+      <ion-item>
+        <ion-label>HRLoginLogOut URL</ion-label>
+        <ion-input
+          type="text"
+          name="webHookInOutUrl"
+          [(ngModel)]="webHookInOutUrl"
+          required
+        ></ion-input>
+      </ion-item>
+    </ion-col>
+  </ion-row>
+  <ion-row>
+    <ion-col>
+      <ion-item>
+        <ion-label>Subdomain</ion-label>
+        <ion-input
+          type="text"
+          name="name"
+          [(ngModel)]="subdomain"
+          required
+        ></ion-input>
+      </ion-item>
+    </ion-col>
+  </ion-row>
+  <ion-row>
+    <ion-col>
+      <ion-item>
+        <ion-label>Product Type</ion-label>
+        <ion-input
+          type="text"
+          name="name"
+          [(ngModel)]="productType"
+          required
+        ></ion-input>
+      </ion-item>
+    </ion-col>
+  </ion-row>
+  <ion-row>
+    <ion-col>
+      <ion-item>
+        <ion-label>Company Logo</ion-label>
+        <ion-input
+          type="text"
+          name="companyLogo"
+          [(ngModel)]="companyLogo"
+          required
+        ></ion-input>
+      </ion-item>
+    </ion-col>
+  </ion-row>
+  <ion-row>
+    <ion-col class="tac">
+      <ion-button (click)="createCompany()"> Create Company </ion-button>
+    </ion-col>
+  </ion-row>
+</ion-content>

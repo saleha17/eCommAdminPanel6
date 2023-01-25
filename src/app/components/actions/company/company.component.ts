@@ -1,4 +1,6 @@
 import { Component, Input, OnInit } from '@angular/core';
+import { ModalController } from '@ionic/angular';
+import { ManageCompanyComponent } from '../manage-company/manage-company.component';
 
 @Component({
   selector: 'app-company',
@@ -18,7 +20,10 @@ export class CompanyComponent implements OnInit {
   public contactNumber = '';
   public contactName = '';
   public companyName = '';
-  public listOfActions: any = [];
+  public listOfActions: any = [
+    { actionName: 'Users' },
+    { actionName: 'Orders' },
+  ];
   public listOfActionPermission: any = [
     { permissionName: 'Read' },
     { permissionName: 'Delete' },
@@ -41,7 +46,7 @@ export class CompanyComponent implements OnInit {
   public productType = '';
   public companyLogo = '';
   selectedDesignation = '';
-  constructor() {}
+  constructor(public modalCtrl: ModalController) {}
 
   ngOnInit() {}
   async getRefCompanyId() {}
@@ -86,12 +91,12 @@ export class CompanyComponent implements OnInit {
   async validateControls() {}
   async getAllActionPermission(data) {}
   async manageCompany() {
-    // let modalPage = await this.modalCtrl.create({
-    //   component: ManageCompanyPage,
-    //   componentProps: {}
-    // });
-    // modalPage.onDidDismiss().then((d: any) => this.handleModalDismiss(d));
-    // await modalPage.present();
+    let modalPage = await this.modalCtrl.create({
+      component: ManageCompanyComponent,
+      componentProps: {},
+    });
+    modalPage.onDidDismiss().then((d: any) => this.handleModalDismiss(d));
+    await modalPage.present();
   }
   async handleModalDismiss(d) {}
 }
