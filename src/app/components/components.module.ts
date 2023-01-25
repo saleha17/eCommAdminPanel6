@@ -11,16 +11,9 @@ import { UserComponent } from './actions/user/user.component';
 import { ManageUserComponent } from './actions/manage-user/manage-user.component';
 import { IonicSelectSearchableComponent } from './ionic-select-searchable/ionic-select-searchable.component';
 import { CompanyComponent } from './actions/company/company.component';
-import { AccordionModule } from 'ngx-accordion';
 
 @NgModule({
-  imports: [
-    CommonModule,
-    FormsModule,
-    IonicModule,
-    NgxDatatableModule,
-    AccordionModule,
-  ],
+  imports: [CommonModule, FormsModule, IonicModule, NgxDatatableModule],
   declarations: [
     RolesComponent,
     SplitPaneItemComponent,

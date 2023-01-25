@@ -19,7 +19,10 @@ export class CompanyComponent implements OnInit {
   public contactName = '';
   public companyName = '';
   public listOfActions: any = [];
-  public listOfActionPermission: any = [];
+  public listOfActionPermission: any = [
+    { permissionName: 'Read' },
+    { permissionName: 'Delete' },
+  ];
   public listOfUsers: any = [];
   public flgBtn = '';
   public userData: any;
