@@ -10,9 +10,15 @@ export class ProductsComponent implements OnInit {
   @Input() data: any;
   @Input() cid: any;
   @ViewChild('slides') slides: IonicSlides;
+  selectedPage = '';
+  productImageSearch = '';
 
   public getAllProductData: any;
-  public items: any;
+  public items = [
+    { name: 'Ipohon11' },
+    { name: 'Ipohon12' },
+    { name: 'Samsung Galaxy10' },
+  ];
   public itemsValue: any;
   public arrowKeyLocation = -1;
   public arrowKeyLocationValue = -1;
@@ -33,6 +39,7 @@ export class ProductsComponent implements OnInit {
   public arrowKeyLocationTag = -1;
   public offset = 0;
   public limit = 10;
+  variantSearch = '';
   public slideOpts = {
     effect: 'flip',
     // loop: true,
@@ -47,7 +54,9 @@ export class ProductsComponent implements OnInit {
   ngOnInit() {}
   setItems() {}
   async getAllProducts() {}
-  getProductDetail(name) {}
+  getProductDetail(name) {
+    this.manageSelectedProduct = name;
+  }
   async searchProductDetail(name) {}
   async filterItems(ev: any) {}
   next() {
@@ -77,8 +86,11 @@ export class ProductsComponent implements OnInit {
       this.flgBtn = 'productSku';
     }
   }
+  setTags() {}
+  async filterTag(ev: any) {}
   async validateControls() {}
   async deleteProductImage(row) {}
   async deleteProductTag(item) {}
   async reset() {}
+  filterProductImage(event: any) {}
 }

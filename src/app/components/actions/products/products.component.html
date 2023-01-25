@@ -26,7 +26,7 @@
     </ion-row>
     <br />
     <ion-row *ngIf="manageSelectedProduct != ''">
-      <ion-col size="9">
+      <ion-col size="10">
         <ion-item>
           <ion-label>Title</ion-label>
           <ion-input
@@ -37,7 +37,7 @@
           ></ion-input>
         </ion-item>
       </ion-col>
-      <ion-col size="3">
+      <ion-col size="2">
         <ion-button *ngIf="flgBtn == 'name'" (click)="updateProduct()">
           <ion-icon name="checkmark"></ion-icon>
         </ion-button>
@@ -62,7 +62,7 @@
       </ion-col>
     </ion-row>
     <ion-row *ngIf="manageSelectedProduct != ''">
-      <ion-col size="9">
+      <ion-col size="10">
         <ion-item>
           <ion-label>Description</ion-label>
           <ion-textarea
@@ -74,7 +74,7 @@
           ></ion-textarea>
         </ion-item>
       </ion-col>
-      <ion-col size="3">
+      <ion-col size="2">
         <ion-button *ngIf="flgBtn == 'description'" (click)="updateProduct()">
           <ion-icon name="checkmark"></ion-icon>
         </ion-button>
@@ -112,7 +112,6 @@
     <!-- ============================================================ -->
     <br /><br />
     <accordion
-      [showArrows]="true"
       class="bgRed"
       [closeOthers]="false"
       *ngIf="manageSelectedProduct != ''"
@@ -136,7 +135,6 @@
           </ion-row>
         </ion-grid>
         <ngx-datatable
-          sortType="multi"
           [headerHeight]="50"
           [footerHeight]="60"
           [rowHeight]="50"
@@ -213,7 +211,6 @@
           </ion-row>
         </ion-grid>
         <ngx-datatable
-          sortType="multi"
           [headerHeight]="50"
           [footerHeight]="60"
           [rowHeight]="35"
@@ -289,7 +286,6 @@
           </ion-row>
         </ion-grid>
         <ngx-datatable
-          sortType="multi"
           [headerHeight]="50"
           [footerHeight]="60"
           [rowHeight]="35"
@@ -352,7 +348,6 @@
           </ion-row>
         </ion-grid>
         <ngx-datatable
-          sortType="multi"
           [headerHeight]="50"
           [footerHeight]="60"
           [rowHeight]="35"
